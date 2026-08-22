@@ -11,7 +11,7 @@
 <meta property="og:description" content="[Descripción profesional breve]">
 <meta property="og:image" content="[URL fotografía principal]">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%235b6b54%22/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23E53935%22/></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +21,24 @@
 
 <style>
   :root{
-    --bg: #f7f4ee;
-    --bg-alt: #efe9df;
-    --ink: #262521;
-    --ink-soft: #5a564d;
-    --sage: #5b6b54;
-    --sage-deep: #3e4a39;
-    --terracotta: #b97452;
-    --line: rgba(38,37,33,0.12);
-    --card: #ffffff;
+    /* paleta base */
+    --color-white: #FFFFFF;
+    --color-gray-light: #E5E5E5;
+    --color-gray: #9E9E9E;
+    --color-gray-dark: #333333;
+    --color-black: #000000;
+    --color-red: #E53935;
+
+    /* tokens semánticos (mapeados a la paleta) */
+    --bg: var(--color-white);
+    --bg-alt: var(--color-gray-light);
+    --ink: var(--color-black);
+    --ink-soft: var(--color-gray-dark);
+    --ink-meta: var(--color-gray);
+    --accent: var(--color-red);
+    --dark-surface: var(--color-gray-dark);
+    --line: var(--color-gray-light);
+    --card: var(--color-white);
     --radius: 2px;
   }
 
@@ -59,7 +68,7 @@
     font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--sage-deep);
+    color: var(--ink-soft);
     font-weight: 600;
   }
 
@@ -90,12 +99,12 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(247,244,238,0.0);
+    background: rgba(255,255,255,0.0);
     transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
     padding: 26px 0;
   }
   header.scrolled{
-    background: rgba(247,244,238,0.92);
+    background: rgba(255,255,255,0.92);
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 0 var(--line);
     padding: 16px 0;
@@ -110,8 +119,11 @@
     font-size:1.3rem;
     font-weight: 500;
     letter-spacing: 0.01em;
+    color: #fff;
+    transition: color 0.4s ease;
   }
-  .brand span{ color: var(--sage); font-style: italic; }
+  .brand span{ color: var(--accent); font-style: italic; }
+  header.scrolled .brand{ color: var(--ink); }
 
   .nav-links{
     display:flex;
@@ -121,14 +133,16 @@
   }
   .nav-links a{
     position:relative;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.82);
     transition: color 0.25s ease;
   }
-  .nav-links a:hover{ color: var(--ink); }
+  header.scrolled .nav-links a{ color: var(--ink-soft); }
+  .nav-links a:hover{ color: #fff; }
+  header.scrolled .nav-links a:hover{ color: var(--ink); }
   .nav-links a::after{
     content:'';
     position:absolute; left:0; bottom:-5px;
-    width:0; height:1px; background:var(--sage);
+    width:0; height:1px; background:var(--accent);
     transition: width 0.3s ease;
   }
   .nav-links a:hover::after{ width:100%; }
@@ -141,22 +155,29 @@
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.03em;
-    border: 1px solid var(--sage-deep);
-    color: var(--sage-deep);
-    transition: all 0.3s ease;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink-soft);
+    transition: all 0.3s ease, filter 0.3s ease;
     white-space: nowrap;
   }
   .btn-solid{
-    background: var(--sage-deep);
+    background: var(--accent);
+    border-color: var(--accent);
     color: #fff;
   }
-  .btn-solid:hover{ background: var(--sage); border-color: var(--sage); transform: translateY(-2px); }
-  .btn-outline:hover{ background: var(--sage-deep); color:#fff; transform: translateY(-2px); }
+  .btn-solid:hover{ filter: brightness(0.88); transform: translateY(-2px); }
+  .btn-outline:hover{ background: var(--ink); border-color: var(--ink); color:#fff; transform: translateY(-2px); }
   .btn-light{
+    background: var(--accent);
+    border-color: var(--accent);
+    color:#fff;
+  }
+  .btn-light:hover{ filter: brightness(0.88); transform: translateY(-2px); }
+  .btn-outline-light{
     border-color: rgba(255,255,255,0.55);
     color:#fff;
   }
-  .btn-light:hover{ background:#fff; color: var(--sage-deep); }
+  .btn-outline-light:hover{ background:#fff; border-color:#fff; color: var(--ink); transform: translateY(-2px); }
 
   .hamburger{
     display:none;
@@ -165,9 +186,11 @@
     z-index: 200;
   }
   .hamburger span{
-    width:26px; height:1.5px; background: var(--ink);
+    width:26px; height:1.5px; background: #fff;
     transition: all 0.3s ease;
   }
+  header.scrolled .hamburger span{ background: var(--ink); }
+  .hamburger.open span{ background: var(--ink); }
   .hamburger.open span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
   .hamburger.open span:nth-child(2){ opacity:0; }
   .hamburger.open span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
@@ -201,9 +224,9 @@
   }
   .hero-bg{
     position:absolute; inset:0;
-    background: linear-gradient(180deg, rgba(38,37,33,0.05) 0%, rgba(38,37,33,0.65) 100%),
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.72) 100%),
                 url('[Fotografía principal - imagen ancha del consultorio o retrato ambiental]') center/cover no-repeat;
-    background-color: var(--sage-deep);
+    background-color: var(--ink);
   }
   .hero-content{
     position:relative;
@@ -211,14 +234,14 @@
     color:#fff;
     max-width: 680px;
   }
-  .hero .eyebrow{ color: #e5dfce; margin-bottom: 18px; display:block; }
+  .hero .eyebrow{ color: var(--color-gray-light); margin-bottom: 18px; display:block; }
   .hero h1{
     font-size: clamp(2.6rem, 6vw, 4.4rem);
     line-height: 1.05;
     color:#fff;
     margin-bottom: 22px;
   }
-  .hero h1 em{ font-style: italic; color: #e7cdb5; }
+  .hero h1 em{ font-style: italic; color: var(--accent); }
   .hero p{
     font-size: 1.08rem;
     color: rgba(255,255,255,0.85);
@@ -249,7 +272,7 @@
 
   /* ---------- trust strip ---------- */
   .trust{
-    background: var(--sage-deep);
+    background: var(--ink);
     color:#fff;
     padding: 22px 0;
   }
@@ -288,8 +311,8 @@
     padding: 44px 30px;
     transition: background 0.3s ease;
   }
-  .value-item:hover{ background: var(--card); }
-  .value-item .num{ font-family:'Fraunces', serif; font-style:italic; color: var(--terracotta); font-size:1.1rem; }
+  .value-item:hover{ background: var(--bg-alt); }
+  .value-item .num{ font-family:'Fraunces', serif; font-style:italic; color: var(--accent); font-size:1.1rem; }
   .value-item h4{ font-size: 1.1rem; margin: 18px 0 10px; }
   .value-item p{ font-size: 0.9rem; color: var(--ink-soft); }
 
@@ -305,7 +328,7 @@
     position:relative;
     aspect-ratio: 4/5;
     background: url('[Fotografía de la psicóloga en su consultorio]') center/cover no-repeat;
-    background-color: #ddd6c7;
+    background-color: var(--bg-alt);
   }
   .about-photo::after{
     content:'';
@@ -317,7 +340,7 @@
   .about-quote{
     position:absolute;
     bottom: -30px; left: -30px;
-    background: var(--sage-deep);
+    background: var(--ink);
     color:#fff;
     padding: 26px 30px;
     max-width: 260px;
@@ -327,7 +350,7 @@
     line-height: 1.5;
   }
   .about-body h3{ font-size: 2rem; margin-bottom: 6px; }
-  .about-role{ color: var(--sage-deep); font-size: 0.95rem; font-weight: 600; margin-bottom: 26px; }
+  .about-role{ color: var(--ink-soft); font-size: 0.95rem; font-weight: 600; margin-bottom: 26px; }
   .about-body p{ color: var(--ink-soft); margin-bottom: 18px; }
   .about-tags{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 26px; }
   .about-tags span{
@@ -366,14 +389,14 @@
   }
   .service-card:hover{
     transform: translateY(-6px);
-    box-shadow: 0 22px 40px -20px rgba(38,37,33,0.25);
+    box-shadow: 0 22px 40px -20px rgba(0,0,0,0.16);
     z-index: 2;
   }
   .service-icon{
     width: 42px; height:42px;
     display:flex; align-items:center; justify-content:center;
     border: 1px solid var(--line);
-    color: var(--sage-deep);
+    color: var(--ink-meta);
     margin-bottom: 22px;
   }
   .service-card h4{ font-size: 1.18rem; margin-bottom: 10px; }
@@ -381,7 +404,7 @@
   .service-link{
     font-size: 0.82rem;
     font-weight:600;
-    color: var(--sage-deep);
+    color: var(--accent);
     display:inline-flex;
     align-items:center;
     gap: 6px;
@@ -391,7 +414,7 @@
 
   /* ---------- featured service ---------- */
   .featured{
-    background: var(--sage-deep);
+    background: var(--dark-surface);
     color: #fff;
     position:relative;
     overflow:hidden;
@@ -402,12 +425,12 @@
     gap: 70px;
     align-items:center;
   }
-  .featured .eyebrow{ color: #cfd8c7; }
+  .featured .eyebrow{ color: var(--color-gray-light); }
   .featured h2{ color:#fff; font-size: clamp(2rem,4vw,2.7rem); margin: 16px 0 22px; }
   .featured p{ color: rgba(255,255,255,0.82); margin-bottom: 16px; }
   .featured-benefits{ margin: 26px 0 34px; display:flex; flex-direction:column; gap:14px; }
   .featured-benefits div{ display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color: rgba(255,255,255,0.9); }
-  .featured-benefits svg{ flex-shrink:0; margin-top:3px; color:#e7cdb5; width:18px; height:18px; }
+  .featured-benefits svg{ flex-shrink:0; margin-top:3px; color:var(--accent); width:18px; height:18px; }
   .featured-photo{
     aspect-ratio: 1/1;
     background: url('[Fotografía del servicio destacado]') center/cover no-repeat;
@@ -426,7 +449,7 @@
     font-family:'Fraunces', serif;
     font-style: italic;
     font-size: 2.6rem;
-    color: var(--terracotta);
+    color: var(--accent);
     display:block;
     margin-bottom: 18px;
   }
@@ -445,14 +468,14 @@
     position:relative;
     overflow:hidden;
     cursor: pointer;
-    background-color:#ddd6c7;
+    background-color: var(--bg-alt);
   }
   .gallery-item img{ width:100%; height:100%; object-fit:cover; transition: transform 0.6s cubic-bezier(.16,.84,.44,1); }
   .gallery-item:hover img{ transform: scale(1.07); }
   .gallery-item::after{
     content:'';
     position:absolute; inset:0;
-    background: linear-gradient(180deg, transparent 55%, rgba(38,37,33,0.55) 100%);
+    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.55) 100%);
     opacity:0;
     transition: opacity 0.35s ease;
   }
@@ -469,7 +492,7 @@
   .gallery-item.wide{ grid-column: span 2; }
 
   .lightbox{
-    position:fixed; inset:0; background: rgba(20,19,17,0.94);
+    position:fixed; inset:0; background: rgba(0,0,0,0.92);
     z-index: 300; display:flex; align-items:center; justify-content:center;
     opacity:0; pointer-events:none; transition: opacity 0.3s ease;
   }
@@ -496,7 +519,7 @@
     font-family:'Fraunces', serif;
     font-style: italic;
     font-size: 2.6rem;
-    color: var(--terracotta);
+    color: var(--accent);
     line-height: 1;
     display:block;
     margin-bottom: 16px;
@@ -518,8 +541,8 @@
     font-family:'Fraunces', serif;
     font-size: 1.15rem;
   }
-  .faq-q svg{ flex-shrink:0; transition: transform 0.35s ease; color: var(--sage-deep); }
-  .faq-item.open .faq-q svg{ transform: rotate(45deg); }
+  .faq-q svg{ flex-shrink:0; transition: transform 0.35s ease, color 0.25s ease; color: var(--ink-meta); }
+  .faq-item.open .faq-q svg{ transform: rotate(45deg); color: var(--accent); }
   .faq-a{
     max-height:0;
     overflow:hidden;
@@ -537,26 +560,26 @@
   .location-info{ padding: 56px 48px; background: var(--card); }
   .location-info h3{ font-size: 1.7rem; margin-bottom: 22px; }
   .location-row{ display:flex; gap:14px; margin-bottom: 20px; align-items:flex-start; }
-  .location-row svg{ flex-shrink:0; color: var(--sage-deep); margin-top:2px; }
+  .location-row svg{ flex-shrink:0; color: var(--ink-meta); margin-top:2px; }
   .location-row div p{ color: var(--ink-soft); font-size: 0.92rem; }
-  .location-row div span{ font-size: 0.78rem; text-transform:uppercase; letter-spacing:0.06em; color: var(--sage-deep); font-weight:600; }
+  .location-row div span{ font-size: 0.78rem; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); font-weight:600; }
   .map-frame{ min-height: 420px; background: var(--bg-alt); position:relative; }
   .map-frame iframe{ width:100%; height:100%; min-height:420px; border:0; filter: grayscale(0.15); }
 
   /* ---------- final cta ---------- */
   .final-cta{
-    background: url('[Imagen de fondo para la sección de cierre]') center/cover no-repeat, var(--sage-deep);
+    background: url('[Imagen de fondo para la sección de cierre]') center/cover no-repeat, var(--dark-surface);
     background-blend-mode: multiply;
     color:#fff;
     text-align:center;
     padding: 130px 0;
   }
-  .final-cta .eyebrow{ color:#e7cdb5; }
+  .final-cta .eyebrow{ color: var(--color-gray-light); }
   .final-cta h2{ color:#fff; font-size: clamp(2.2rem,5vw,3.6rem); max-width: 780px; margin: 20px auto 34px; line-height:1.15; }
   .final-cta p{ color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto 40px; }
 
   /* ---------- footer ---------- */
-  footer{ background: #201f1c; color: rgba(255,255,255,0.75); padding: 80px 0 30px; }
+  footer{ background: var(--ink); color: rgba(255,255,255,0.75); padding: 80px 0 30px; }
   .footer-grid{
     display:grid;
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -571,7 +594,7 @@
   .footer-col a:hover{ color:#fff; }
   .footer-social{ display:flex; gap: 14px; margin-top: 6px; }
   .footer-social a{ width:36px; height:36px; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; }
-  .footer-social a:hover{ background:#fff; color:#201f1c; border-color:#fff; }
+  .footer-social a:hover{ background:#fff; color: var(--ink); border-color:#fff; }
   .footer-bottom{
     display:flex; justify-content:space-between; align-items:center;
     padding-top: 30px; font-size: 0.78rem; color: rgba(255,255,255,0.5); flex-wrap:wrap; gap:12px;
@@ -585,13 +608,13 @@
     bottom: 24px; right: 24px;
     z-index: 90;
     width: 58px; height:58px;
-    background: #25D366;
+    background: var(--accent);
     border-radius: 50%;
     display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 10px 30px -8px rgba(37,211,102,0.6);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px -8px rgba(229,57,53,0.5);
+    transition: transform 0.3s ease, filter 0.3s ease;
   }
-  .wa-float:hover{ transform: scale(1.08); }
+  .wa-float:hover{ transform: scale(1.08); filter: brightness(0.92); }
 
   /* ---------- responsive ---------- */
   @media (min-width: 1000px){
@@ -678,7 +701,7 @@
         <a href="#" class="btn btn-light wa-link" target="_blank" rel="noopener">
           Agendar una cita
         </a>
-        <a href="#servicios" class="btn btn-outline" style="border-color:rgba(255,255,255,0.55); color:#fff;">
+        <a href="#servicios" class="btn btn-outline-light">
           Conocer mis servicios
         </a>
       </div>

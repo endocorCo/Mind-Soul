@@ -237,6 +237,16 @@
     display:none;
   }
 
+  .hero-logo{
+    position:absolute;
+    top: 132px;
+    right: 6%;
+    z-index: 2;
+    width: 132px;
+    filter: drop-shadow(0 16px 34px rgba(0,0,0,0.4));
+  }
+  .hero-logo img{ width:100%; height:auto; display:block; }
+
   /* ---------- trust strip ---------- */
   .trust{
     background: var(--sage-deep);
@@ -615,6 +625,7 @@
     .hero-ctas{ flex-direction:column; align-items:stretch; }
     .hero-ctas .btn{ justify-content:center; }
     .location-info{ padding: 40px 26px; }
+    .hero-logo{ width: 84px; top: 96px; right: 20px; }
   }
 </style>
 </head>
@@ -655,6 +666,9 @@
 <!-- ================= HERO ================= -->
 <section class="hero" id="inicio">
   <div class="hero-bg"></div>
+  <div class="hero-logo reveal reveal-delay-2 in">
+    <img src="logo-mind-soul.png" alt="Mind & Soul · Terapia psicológica">
+  </div>
   <div class="wrap">
     <div class="hero-content reveal in">
       <span class="eyebrow">Psicología · Bienestar emocional · Acompañamiento profesional</span>

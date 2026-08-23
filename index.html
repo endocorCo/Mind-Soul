@@ -485,14 +485,14 @@
   .gallery-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 190px;
-    gap: 12px;
+    gap: 20px;
   }
   .gallery-item{
     position:relative;
     overflow:hidden;
     cursor: pointer;
     background-color: var(--bg-alt);
+    aspect-ratio: 1 / 1;
   }
   .gallery-item img{ width:100%; height:100%; object-fit:cover; transition: transform 0.6s cubic-bezier(.16,.84,.44,1); }
   .gallery-item:hover img{ transform: scale(1.07); }
@@ -512,8 +512,6 @@
     z-index:2;
   }
   .gallery-item:hover span{ opacity:1; transform:translateY(0); }
-  .gallery-item.tall{ grid-row: span 2; }
-  .gallery-item.wide{ grid-column: span 2; }
 
   .lightbox{
     position:fixed; inset:0; background: rgba(0,0,0,0.92);
@@ -664,11 +662,41 @@
     .about-grid{ grid-template-columns: 1fr; gap: 90px 0; }
     .about-quote{ position:static; margin-top: 22px; max-width:none; }
     .about-stat{ position:static; display:inline-block; margin-top: 16px; }
-    .service-grid{ grid-template-columns: repeat(2,1fr); }
+    .service-grid{
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      gap:16px;
+      background:none;
+      border:none;
+      padding-bottom:6px;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      margin:0 -24px;
+      padding-left:24px;
+      padding-right:24px;
+    }
+    .service-grid::-webkit-scrollbar{ display:none; }
+    .service-card{ flex:0 0 78%; scroll-snap-align:start; border:1px solid var(--line); }
     .featured-grid{ grid-template-columns: 1fr; gap: 44px; }
     .featured-photo{ order:-1; }
     .process-grid{ grid-template-columns: repeat(2,1fr); gap: 40px 24px; }
-    .gallery-grid{ grid-template-columns: repeat(2,1fr); grid-auto-rows: 160px; }
+    .gallery-grid{
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      gap:14px;
+      padding-bottom:6px;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      margin:0 -24px;
+      padding-left:24px;
+      padding-right:24px;
+    }
+    .gallery-grid::-webkit-scrollbar{ display:none; }
+    .gallery-item{ flex:0 0 68%; aspect-ratio:1/1; scroll-snap-align:start; }
+    .gallery-item::after{ opacity:1; }
+    .gallery-item span{ opacity:1; transform:none; }
     .testimonial-grid{ grid-template-columns: 1fr; }
     .location-grid{ grid-template-columns: 1fr; }
     .footer-grid{ grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -677,9 +705,9 @@
   @media (max-width: 620px){
     section{ padding: 74px 0; }
     .value-grid{ grid-template-columns: 1fr; }
-    .service-grid{ grid-template-columns: 1fr; }
     .process-grid{ grid-template-columns: 1fr; }
-    .gallery-grid{ grid-template-columns: repeat(2,1fr); grid-auto-rows: 130px; }
+    .service-card{ flex-basis: 84%; }
+    .gallery-item{ flex-basis: 78%; }
     .footer-grid{ grid-template-columns: 1fr; gap: 36px; }
     .footer-bottom{ flex-direction:column; align-items:flex-start; }
     .hero-ctas{ flex-direction:column; align-items:stretch; }
@@ -929,7 +957,7 @@
     </div>
 
     <div class="gallery-grid reveal">
-      <div class="gallery-item tall" data-full="fotos/galeria-1.jpg">
+      <div class="gallery-item" data-full="fotos/galeria-1.jpg">
         <img src="fotos/galeria-1.jpg" alt="Consultorio">
         <span>Consultorio</span>
       </div>
@@ -937,7 +965,7 @@
         <img src="fotos/galeria-2.jpg" alt="Detalle del espacio">
         <span>Detalle</span>
       </div>
-      <div class="gallery-item wide" data-full="fotos/galeria-3.jpg">
+      <div class="gallery-item" data-full="fotos/galeria-3.jpg">
         <img src="fotos/galeria-3.jpg" alt="Sala de espera">
         <span>Sala de espera</span>
       </div>
@@ -949,7 +977,7 @@
         <img src="fotos/galeria-5.jpg" alt="Detalle de marca">
         <span>Marca</span>
       </div>
-      <div class="gallery-item tall" data-full="fotos/galeria-6.jpg">
+      <div class="gallery-item" data-full="fotos/galeria-6.jpg">
         <img src="fotos/galeria-6.jpg" alt="Espacio de sesión">
         <span>Espacio de sesión</span>
       </div>

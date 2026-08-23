@@ -40,6 +40,15 @@
     --line: var(--color-gray-light);
     --card: var(--color-white);
     --radius: 2px;
+
+    /* escala tipográfica (ratio ~1.25, fluida en los tamaños grandes) */
+    --text-caption: 0.75rem;
+    --text-secondary: 0.875rem;
+    --text-body: 1rem;
+    --text-subheading: 1.25rem;
+    --text-heading: clamp(1.6rem, 3vw, 2rem);
+    --text-headline: clamp(2rem, 4vw, 2.9rem);
+    --text-display: clamp(2.6rem, 6vw, 4.4rem);
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
@@ -65,7 +74,7 @@
 
   .eyebrow{
     font-family: 'Manrope', sans-serif;
-    font-size: 0.72rem;
+    font-size: var(--text-caption);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -129,7 +138,7 @@
     display:flex;
     align-items:center;
     gap: 36px;
-    font-size: 0.87rem;
+    font-size: var(--text-secondary);
   }
   .nav-links a{
     position:relative;
@@ -152,7 +161,7 @@
     align-items:center;
     gap:8px;
     padding: 13px 26px;
-    font-size: 0.82rem;
+    font-size: var(--text-secondary);
     font-weight: 600;
     letter-spacing: 0.03em;
     border: 1px solid var(--ink-soft);
@@ -182,7 +191,11 @@
   .hamburger{
     display:none;
     flex-direction:column;
+    align-items:center;
+    justify-content:center;
     gap:5px;
+    min-width:44px;
+    min-height:44px;
     z-index: 200;
   }
   .hamburger span{
@@ -210,7 +223,7 @@
     transition: transform 0.45s cubic-bezier(.16,.84,.44,1);
   }
   .mobile-menu.open{ transform: translateX(0); }
-  .mobile-menu a{ font-family:'Fraunces', serif; font-size: 1.9rem; }
+  .mobile-menu a{ font-family:'Fraunces', serif; font-size: 1.9rem; line-height: 1.3; }
 
   /* ---------- hero ---------- */
   .hero{
@@ -236,16 +249,16 @@
   }
   .hero .eyebrow{ color: var(--color-gray-light); margin-bottom: 18px; display:block; }
   .hero h1{
-    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-size: var(--text-display);
     line-height: 1.05;
     color:#fff;
     margin-bottom: 22px;
   }
   .hero h1 em{ font-style: italic; color: var(--accent); }
   .hero p{
-    font-size: 1.08rem;
+    font-size: var(--text-body);
     color: rgba(255,255,255,0.85);
-    max-width: 520px;
+    max-width: 38ch;
     margin-bottom: 36px;
   }
   .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
@@ -281,7 +294,7 @@
     flex-wrap:wrap;
     gap: 14px 40px;
     justify-content:center;
-    font-size: 0.82rem;
+    font-size: var(--text-secondary);
     letter-spacing: 0.03em;
     text-align:center;
   }
@@ -295,8 +308,8 @@
   }
   .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
   .section-head .eyebrow{ display:block; margin-bottom: 14px; }
-  .section-head h2{ font-size: clamp(2rem, 4vw, 2.9rem); line-height:1.15; }
-  .section-head p{ color: var(--ink-soft); margin-top: 18px; font-size: 1.02rem; }
+  .section-head h2{ font-size: var(--text-headline); line-height:1.15; }
+  .section-head p{ color: var(--ink-soft); margin-top: 18px; font-size: var(--text-body); }
 
   /* ---------- welcome/value grid ---------- */
   .value-grid{
@@ -313,8 +326,8 @@
   }
   .value-item:hover{ background: var(--bg-alt); }
   .value-item .num{ font-family:'Fraunces', serif; font-style:italic; color: var(--accent); font-size:1.1rem; }
-  .value-item h4{ font-size: 1.1rem; margin: 18px 0 10px; }
-  .value-item p{ font-size: 0.9rem; color: var(--ink-soft); }
+  .value-item h4{ font-size: var(--text-subheading); margin: 18px 0 10px; }
+  .value-item p{ font-size: var(--text-body); color: var(--ink-soft); }
 
   /* ---------- about ---------- */
   .about{ background: var(--bg-alt); }
@@ -368,19 +381,19 @@
   }
   .about-stat-label{
     display:block;
-    font-size: 0.7rem;
+    font-size: var(--text-caption);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--ink-soft);
     margin-top: 8px;
     line-height: 1.4;
   }
-  .about-body h3{ font-size: 2rem; margin-bottom: 6px; }
-  .about-role{ color: var(--ink-soft); font-size: 0.95rem; font-weight: 600; margin-bottom: 26px; }
-  .about-body p{ color: var(--ink-soft); margin-bottom: 18px; }
+  .about-body h3{ font-size: var(--text-heading); line-height: 1.15; margin-bottom: 6px; }
+  .about-role{ color: var(--ink-soft); font-size: var(--text-secondary); font-weight: 600; margin-bottom: 26px; }
+  .about-body p{ color: var(--ink-soft); font-size: var(--text-body); margin-bottom: 18px; }
   .about-tags{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 26px; }
   .about-tags span{
-    font-size: 0.78rem;
+    font-size: var(--text-caption);
     padding: 8px 16px;
     border: 1px solid var(--line);
     color: var(--ink-soft);
@@ -415,18 +428,18 @@
     color: var(--ink-meta);
     margin-bottom: 22px;
   }
-  .service-card h4{ font-size: 1.18rem; margin-bottom: 10px; }
-  .service-card p{ font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 22px; }
+  .service-card h4{ font-size: var(--text-subheading); margin-bottom: 10px; }
+  .service-card p{ font-size: var(--text-body); color: var(--ink-soft); margin-bottom: 22px; }
   .service-card .service-price{
     font-family: 'Fraunces', serif;
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: var(--text-subheading);
     color: var(--ink);
     margin-top: -12px;
     margin-bottom: 22px;
   }
   .service-link{
-    font-size: 0.82rem;
+    font-size: var(--text-secondary);
     font-weight:600;
     color: var(--accent);
     display:inline-flex;
@@ -450,10 +463,10 @@
     align-items:center;
   }
   .featured .eyebrow{ color: var(--color-gray-light); }
-  .featured h2{ color:#fff; font-size: clamp(2rem,4vw,2.7rem); margin: 16px 0 22px; }
-  .featured p{ color: rgba(255,255,255,0.82); margin-bottom: 16px; }
+  .featured h2{ color:#fff; font-size: var(--text-headline); margin: 16px 0 22px; }
+  .featured p{ color: rgba(255,255,255,0.82); font-size: var(--text-body); margin-bottom: 16px; }
   .featured-benefits{ margin: 26px 0 34px; display:flex; flex-direction:column; gap:14px; }
-  .featured-benefits div{ display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color: rgba(255,255,255,0.9); }
+  .featured-benefits div{ display:flex; align-items:flex-start; gap:12px; font-size: var(--text-body); color: rgba(255,255,255,0.9); }
   .featured-benefits svg{ flex-shrink:0; margin-top:3px; color:var(--accent); width:18px; height:18px; }
   .featured-photo{
     aspect-ratio: 1/1;
@@ -477,8 +490,8 @@
     display:block;
     margin-bottom: 18px;
   }
-  .process-item h4{ font-size: 1.1rem; margin-bottom: 10px; }
-  .process-item p{ font-size: 0.88rem; color: var(--ink-soft); }
+  .process-item h4{ font-size: var(--text-subheading); margin-bottom: 10px; }
+  .process-item p{ font-size: var(--text-body); color: var(--ink-soft); }
 
   /* ---------- gallery ---------- */
   .gallery{ background: var(--bg-alt); }
@@ -506,7 +519,7 @@
   .gallery-item:hover::after{ opacity:1; }
   .gallery-item span{
     position:absolute; left:16px; bottom:14px;
-    color:#fff; font-size:0.78rem; letter-spacing:0.04em;
+    color:#fff; font-size: var(--text-caption); letter-spacing:0.04em;
     opacity:0; transform: translateY(8px);
     transition: all 0.35s ease;
     z-index:2;
@@ -546,8 +559,8 @@
     display:block;
     margin-bottom: 16px;
   }
-  .testimonial-card p{ font-size: 0.94rem; color: var(--ink-soft); margin-bottom: 20px; font-style: italic; }
-  .testimonial-card .name{ font-size: 0.85rem; font-weight: 700; color: var(--ink); font-style: normal; }
+  .testimonial-card p{ font-size: var(--text-body); color: var(--ink-soft); margin-bottom: 20px; font-style: italic; }
+  .testimonial-card .name{ font-size: var(--text-secondary); font-weight: 700; color: var(--ink); font-style: normal; }
 
   /* ---------- FAQ ---------- */
   .faq-item{
@@ -561,7 +574,7 @@
     padding: 26px 0;
     text-align:left;
     font-family:'Fraunces', serif;
-    font-size: 1.15rem;
+    font-size: var(--text-subheading);
   }
   .faq-q svg{ flex-shrink:0; transition: transform 0.35s ease, color 0.25s ease; color: var(--ink-meta); }
   .faq-item.open .faq-q svg{ transform: rotate(45deg); color: var(--accent); }
@@ -570,7 +583,7 @@
     overflow:hidden;
     transition: max-height 0.4s ease;
   }
-  .faq-a p{ padding-bottom: 26px; color: var(--ink-soft); max-width: 640px; font-size:0.95rem; }
+  .faq-a p{ padding-bottom: 26px; color: var(--ink-soft); max-width: 65ch; font-size: var(--text-body); }
 
   /* ---------- location ---------- */
   .location-grid{
@@ -580,21 +593,21 @@
     border: 1px solid var(--line);
   }
   .location-info{ padding: 56px 48px; background: var(--card); }
-  .location-info h3{ font-size: 1.7rem; margin-bottom: 22px; }
+  .location-info h3{ font-size: var(--text-heading); line-height: 1.2; margin-bottom: 22px; }
   .location-row{ display:flex; gap:14px; margin-bottom: 20px; align-items:flex-start; }
   .location-row svg{ flex-shrink:0; color: var(--ink-meta); margin-top:2px; }
-  .location-row div p{ color: var(--ink-soft); font-size: 0.92rem; }
+  .location-row div p{ color: var(--ink-soft); font-size: var(--text-body); }
   .location-row div p a:hover{ color: var(--accent); }
-  .location-row div span{ font-size: 0.78rem; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); font-weight:600; }
+  .location-row div span{ font-size: var(--text-caption); text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); font-weight:600; }
   .social-row{ display:flex; gap:10px; margin-top:8px; }
   .social-row a{
-    width:34px; height:34px;
+    width:44px; height:44px;
     display:flex; align-items:center; justify-content:center;
     border: 1px solid var(--line);
     color: var(--ink-soft);
     transition: all 0.3s ease;
   }
-  .social-row a svg{ width:15px; height:15px; }
+  .social-row a svg{ width:17px; height:17px; }
   .social-row a:hover{ background: var(--ink); border-color: var(--ink); color:#fff; }
   .map-frame{ min-height: 420px; background: var(--bg-alt); position:relative; }
   .map-frame iframe{ width:100%; height:100%; min-height:420px; border:0; filter: grayscale(0.15); }
@@ -609,7 +622,7 @@
   }
   .final-cta .eyebrow{ color: var(--color-gray-light); }
   .final-cta h2{ color:#fff; font-size: clamp(2.2rem,5vw,3.6rem); max-width: 780px; margin: 20px auto 34px; line-height:1.15; }
-  .final-cta p{ color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto 40px; }
+  .final-cta p{ color: rgba(255,255,255,0.8); font-size: var(--text-body); max-width: 38ch; margin: 0 auto 40px; }
 
   /* ---------- footer ---------- */
   footer{ background: var(--ink); color: rgba(255,255,255,0.75); padding: 80px 0 30px; }
@@ -620,17 +633,17 @@
     padding-bottom: 60px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
-  .footer-brand{ font-family:'Fraunces', serif; font-size: 1.4rem; color:#fff; margin-bottom: 16px; }
-  .footer-grid p{ font-size: 0.88rem; line-height:1.7; }
-  .footer-col h5{ color:#fff; font-size: 0.82rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom: 20px; }
-  .footer-col a, .footer-col span{ display:block; font-size: 0.88rem; margin-bottom: 12px; color: rgba(255,255,255,0.65); transition: color 0.25s ease; }
+  .footer-brand{ font-family:'Fraunces', serif; font-size: 1.3rem; color:#fff; margin-bottom: 16px; }
+  .footer-grid p{ font-size: var(--text-secondary); line-height:1.7; }
+  .footer-col h5{ color:#fff; font-size: var(--text-caption); letter-spacing:0.06em; text-transform:uppercase; margin-bottom: 20px; }
+  .footer-col a, .footer-col span{ display:block; font-size: var(--text-secondary); margin-bottom: 12px; color: rgba(255,255,255,0.65); transition: color 0.25s ease; }
   .footer-col a:hover{ color:#fff; }
   .footer-social{ display:flex; gap: 14px; margin-top: 6px; }
-  .footer-social a{ width:36px; height:36px; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; }
+  .footer-social a{ width:44px; height:44px; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; }
   .footer-social a:hover{ background:#fff; color: var(--ink); border-color:#fff; }
   .footer-bottom{
     display:flex; justify-content:space-between; align-items:center;
-    padding-top: 30px; font-size: 0.78rem; color: rgba(255,255,255,0.5); flex-wrap:wrap; gap:12px;
+    padding-top: 30px; font-size: var(--text-caption); color: rgba(255,255,255,0.5); flex-wrap:wrap; gap:12px;
   }
   .footer-bottom a{ color: rgba(255,255,255,0.5); }
   .footer-bottom a:hover{ color:#fff; }
@@ -886,7 +899,7 @@
           <a href="#" class="service-link wa-link" target="_blank" rel="noopener">Solicitar información <i data-lucide="arrow-right"></i></a>
         </div>
       </div>
-      <p style="text-align:center; font-family:'Fraunces', serif; font-style:italic; font-size:1.1rem; color:var(--ink-soft); margin-top:48px;">"Tú eliges la opción que mejor se adapta a tu vida."</p>
+      <p class="services-note">"Tú eliges la opción que mejor se adapta a tu vida."</p>
     </div>
   </div>
 </section>
@@ -1133,9 +1146,9 @@
         <div class="footer-brand">Mind & Soul</div>
         <p>Estoy aquí para acompañarte. Terapia con enfoque humanista para niños, adolescentes y adultos, presencial y en línea.</p>
         <div class="footer-social">
-          <a href="https://instagram.com/psic.elizabethvalencia" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram" style="width:16px;height:16px;"></i></a>
-          <a href="https://www.facebook.com/search/top/?q=Psic%C3%B3loga%20Elizabeth%20Valencia" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook" style="width:16px;height:16px;"></i></a>
-          <a href="https://tiktok.com/@psicologaelivalencia" target="_blank" rel="noopener" aria-label="TikTok"><i data-lucide="music-2" style="width:16px;height:16px;"></i></a>
+          <a href="https://instagram.com/psic.elizabethvalencia" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram" style="width:18px;height:18px;"></i></a>
+          <a href="https://www.facebook.com/search/top/?q=Psic%C3%B3loga%20Elizabeth%20Valencia" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook" style="width:18px;height:18px;"></i></a>
+          <a href="https://tiktok.com/@psicologaelivalencia" target="_blank" rel="noopener" aria-label="TikTok"><i data-lucide="music-2" style="width:18px;height:18px;"></i></a>
         </div>
       </div>
 

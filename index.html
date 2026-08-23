@@ -349,6 +349,32 @@
     font-size: 1rem;
     line-height: 1.5;
   }
+  .about-stat{
+    position:absolute;
+    top: -24px; right: -24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 22px 28px;
+    text-align:center;
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.2);
+  }
+  .about-stat-num{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .about-stat-label{
+    display:block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
   .about-body h3{ font-size: 2rem; margin-bottom: 6px; }
   .about-role{ color: var(--ink-soft); font-size: 0.95rem; font-weight: 600; margin-bottom: 26px; }
   .about-body p{ color: var(--ink-soft); margin-bottom: 18px; }
@@ -560,7 +586,18 @@
   .location-row{ display:flex; gap:14px; margin-bottom: 20px; align-items:flex-start; }
   .location-row svg{ flex-shrink:0; color: var(--ink-meta); margin-top:2px; }
   .location-row div p{ color: var(--ink-soft); font-size: 0.92rem; }
+  .location-row div p a:hover{ color: var(--accent); }
   .location-row div span{ font-size: 0.78rem; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); font-weight:600; }
+  .social-row{ display:flex; gap:10px; margin-top:8px; }
+  .social-row a{
+    width:34px; height:34px;
+    display:flex; align-items:center; justify-content:center;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    transition: all 0.3s ease;
+  }
+  .social-row a svg{ width:15px; height:15px; }
+  .social-row a:hover{ background: var(--ink); border-color: var(--ink); color:#fff; }
   .map-frame{ min-height: 420px; background: var(--bg-alt); position:relative; }
   .map-frame iframe{ width:100%; height:100%; min-height:420px; border:0; filter: grayscale(0.15); }
 
@@ -626,6 +663,7 @@
     .value-grid{ grid-template-columns: repeat(2,1fr); }
     .about-grid{ grid-template-columns: 1fr; gap: 90px 0; }
     .about-quote{ position:static; margin-top: 22px; max-width:none; }
+    .about-stat{ position:static; display:inline-block; margin-top: 16px; }
     .service-grid{ grid-template-columns: repeat(2,1fr); }
     .featured-grid{ grid-template-columns: 1fr; gap: 44px; }
     .featured-photo{ order:-1; }
@@ -758,6 +796,10 @@
     <div class="about-grid">
       <div class="reveal" style="position:relative;">
         <div class="about-photo"></div>
+        <div class="about-stat">
+          <span class="about-stat-num">15+</span>
+          <span class="about-stat-label">Años de<br>experiencia</span>
+        </div>
         <div class="about-quote">
           "Cuidar tu mente es vivir mejor"
         </div>
@@ -766,7 +808,7 @@
       <div class="about-body reveal reveal-delay-1">
         <span class="eyebrow">Sobre mí</span>
         <h3 style="margin-top:14px;">Psic. Elizabeth Valencia Cedillo</h3>
-        <p class="about-role">Psicóloga · Enfoque Humanista</p>
+        <p class="about-role">Maestría en Psicoterapia · 15 años de experiencia laboral</p>
 
         <p>Acompañamiento profesional para tu bienestar emocional y crecimiento personal, dirigido a niños, adolescentes y adultos.</p>
         <p>Su atención se basa en un enfoque humanista, centrado en la persona, su bienestar y su potencial de crecimiento — un espacio para escucharte, comprenderte y acompañarte en tu proceso.</p>
@@ -776,6 +818,7 @@
           <span>Terapia de pareja</span>
           <span>Terapia familiar y grupal</span>
           <span>Enfoque humanista</span>
+          <span>Maestría en Psicoterapia</span>
         </div>
       </div>
     </div>
@@ -977,7 +1020,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">¿Cómo puedo solicitar información?<i data-lucide="plus"></i></button>
-        <div class="faq-a"><p>El medio más rápido es WhatsApp — escríbeme y con gusto resuelvo tus dudas.</p></div>
+        <div class="faq-a"><p>El medio más rápido es WhatsApp. También puedes escribirme al correo elvace0712@hotmail.com.</p></div>
       </div>
     </div>
   </div>
@@ -1010,6 +1053,21 @@
         <div class="location-row">
           <i data-lucide="phone"></i>
           <div><span>Contacto</span><p>+52 55 2016 7907</p></div>
+        </div>
+        <div class="location-row">
+          <i data-lucide="mail"></i>
+          <div><span>Correo</span><p><a href="mailto:elvace0712@hotmail.com">elvace0712@hotmail.com</a></p></div>
+        </div>
+        <div class="location-row">
+          <i data-lucide="share-2"></i>
+          <div>
+            <span>Redes sociales</span>
+            <div class="social-row">
+              <a href="https://instagram.com/psic.elizabethvalencia" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+              <a href="https://www.facebook.com/search/top/?q=Psic%C3%B3loga%20Elizabeth%20Valencia" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+              <a href="https://tiktok.com/@psicologaelivalencia" target="_blank" rel="noopener" aria-label="TikTok"><i data-lucide="music-2"></i></a>
+            </div>
+          </div>
         </div>
 
         <a href="https://www.google.com/maps/search/?api=1&query=Calle+5+de+Mayo+21+Texcoco+Estado+de+Mexico" class="btn btn-outline" target="_blank" rel="noopener" style="margin-top:14px;">
@@ -1047,9 +1105,9 @@
         <div class="footer-brand">Mind & Soul</div>
         <p>Estoy aquí para acompañarte. Terapia con enfoque humanista para niños, adolescentes y adultos, presencial y en línea.</p>
         <div class="footer-social">
-          <a href="[Instagram]" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram" style="width:16px;height:16px;"></i></a>
-          <a href="[Facebook]" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook" style="width:16px;height:16px;"></i></a>
-          <a href="[TikTok]" target="_blank" rel="noopener" aria-label="TikTok"><i data-lucide="music-2" style="width:16px;height:16px;"></i></a>
+          <a href="https://instagram.com/psic.elizabethvalencia" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram" style="width:16px;height:16px;"></i></a>
+          <a href="https://www.facebook.com/search/top/?q=Psic%C3%B3loga%20Elizabeth%20Valencia" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook" style="width:16px;height:16px;"></i></a>
+          <a href="https://tiktok.com/@psicologaelivalencia" target="_blank" rel="noopener" aria-label="TikTok"><i data-lucide="music-2" style="width:16px;height:16px;"></i></a>
         </div>
       </div>
 
@@ -1072,6 +1130,7 @@
       <div class="footer-col">
         <h5>Contacto</h5>
         <a href="#" class="wa-link" target="_blank" rel="noopener">+52 55 2016 7907</a>
+        <a href="mailto:elvace0712@hotmail.com">elvace0712@hotmail.com</a>
         <span>Calle 5 de Mayo #21, Texcoco, Edo. México</span>
       </div>
     </div>

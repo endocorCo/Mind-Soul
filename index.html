@@ -352,6 +352,7 @@
     gap: 70px;
     align-items:center;
   }
+  .about-photo-wrap{ position:relative; }
   .about-photo{
     position:relative;
     aspect-ratio: 4/5;
@@ -376,6 +377,7 @@
     font-style: italic;
     font-size: 1rem;
     line-height: 1.5;
+    transition: opacity 0.9s cubic-bezier(.16,.84,.44,1), transform 0.4s cubic-bezier(.16,.84,.44,1);
   }
   .about-stat{
     position:absolute;
@@ -385,7 +387,11 @@
     padding: 22px 28px;
     text-align:center;
     box-shadow: 0 20px 40px -20px rgba(0,0,0,0.2);
+    transition: opacity 0.9s cubic-bezier(.16,.84,.44,1), transform 0.4s cubic-bezier(.16,.84,.44,1);
   }
+  .about-stat.reveal, .about-quote.reveal{ transform: none; }
+  .about-photo-wrap:hover .about-stat{ transform: rotate(-3deg); }
+  .about-photo-wrap:hover .about-quote{ transform: rotate(2deg); }
   .about-stat-num{
     display:block;
     font-family:'Fraunces', serif;
@@ -545,6 +551,15 @@
   .gallery-grid .gallery-item:nth-child(n+5){ transition-delay: .2s; }
   .gallery-item img{ width:100%; height:100%; object-fit:cover; transition: transform 0.6s cubic-bezier(.16,.84,.44,1); }
   .gallery-item:hover img{ transform: scale(1.07); }
+  .gallery-fallback{
+    position:absolute; inset:0;
+    display:none;
+    align-items:center; justify-content:center;
+    color: var(--ink-meta);
+  }
+  .gallery-item.img-failed .gallery-fallback{ display:flex; }
+  .gallery-item.img-failed img{ display:none; }
+  .gallery-fallback svg{ width:26px; height:26px; }
   .gallery-item::after{
     content:'';
     position:absolute; inset:0;
@@ -695,6 +710,10 @@
   .footer-bottom a:hover{ color:#fff; }
 
   /* ---------- floating whatsapp ---------- */
+  @keyframes wa-breathe{
+    0%, 100%{ box-shadow: 0 10px 30px -8px rgba(229,57,53,0.5); }
+    50%{ box-shadow: 0 12px 36px -6px rgba(229,57,53,0.72); }
+  }
   .wa-float{
     position:fixed;
     bottom: 24px; right: 24px;
@@ -705,8 +724,9 @@
     display:flex; align-items:center; justify-content:center;
     box-shadow: 0 10px 30px -8px rgba(229,57,53,0.5);
     transition: transform 0.3s ease, filter 0.3s ease;
+    animation: wa-breathe 3.4s ease-in-out infinite;
   }
-  .wa-float:hover{ transform: scale(1.08); filter: brightness(0.92); }
+  .wa-float:hover{ transform: scale(1.08); filter: brightness(0.92); animation-play-state: paused; }
 
   /* ---------- responsive ---------- */
   @media (min-width: 1000px){
@@ -881,10 +901,10 @@
 <section class="about" id="sobre-mi">
   <div class="wrap">
     <div class="about-grid">
-      <div class="reveal" style="position:relative;">
+      <div class="reveal about-photo-wrap">
         <div class="about-photo"></div>
-        <div class="about-stat reveal reveal-delay-2">
-          <span class="about-stat-num">15+</span>
+        <div class="about-stat reveal reveal-delay-2" data-count-to="15" data-count-suffix="+">
+          <span class="about-stat-num">0+</span>
           <span class="about-stat-label">Años de<br>experiencia</span>
         </div>
         <div class="about-quote reveal reveal-delay-3">
@@ -1017,30 +1037,37 @@
 
     <div class="gallery-grid">
       <div class="gallery-item reveal" data-full="fotos/galeria-1.jpg">
+        <div class="gallery-fallback"><i data-lucide="image"></i></div>
         <img src="fotos/galeria-1.jpg" alt="Consultorio">
         <span>Consultorio</span>
       </div>
       <div class="gallery-item reveal" data-full="fotos/galeria-2.jpg">
+        <div class="gallery-fallback"><i data-lucide="image"></i></div>
         <img src="fotos/galeria-2.jpg" alt="Detalle del espacio">
         <span>Detalle</span>
       </div>
       <div class="gallery-item reveal" data-full="fotos/galeria-3.jpg">
+        <div class="gallery-fallback"><i data-lucide="image"></i></div>
         <img src="fotos/galeria-3.jpg" alt="Sala de espera">
         <span>Sala de espera</span>
       </div>
       <div class="gallery-item reveal" data-full="fotos/galeria-4.jpg">
+        <div class="gallery-fallback"><i data-lucide="image"></i></div>
         <img src="fotos/galeria-4.jpg" alt="Fotografía profesional">
         <span>Retrato</span>
       </div>
       <div class="gallery-item reveal" data-full="fotos/galeria-5.jpg">
+        <div class="gallery-fallback"><i data-lucide="image"></i></div>
         <img src="fotos/galeria-5.jpg" alt="Detalle de marca">
         <span>Marca</span>
       </div>
       <div class="gallery-item reveal" data-full="fotos/galeria-6.jpg">
+        <div class="gallery-fallback"><i data-lucide="image"></i></div>
         <img src="fotos/galeria-6.jpg" alt="Espacio de sesión">
         <span>Espacio de sesión</span>
       </div>
       <div class="gallery-item reveal" data-full="fotos/galeria-7.jpg">
+        <div class="gallery-fallback"><i data-lucide="image"></i></div>
         <img src="fotos/galeria-7.jpg" alt="Detalle del consultorio">
         <span>Detalle</span>
       </div>
@@ -1276,11 +1303,34 @@
   });
 
   /* ======= reveal on scroll ======= */
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function animateCount(wrapper) {
+    const numEl = wrapper.querySelector(".about-stat-num");
+    const target = parseInt(wrapper.dataset.countTo, 10);
+    const suffix = wrapper.dataset.countSuffix || "";
+    if (!numEl || !target) return;
+    if (prefersReducedMotion) {
+      numEl.textContent = target + suffix;
+      return;
+    }
+    const duration = 900;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      numEl.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
   const revealEls = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("in");
+        if (entry.target.dataset.countTo) animateCount(entry.target);
         io.unobserve(entry.target);
       }
     });
@@ -1304,13 +1354,22 @@
     });
   });
 
+  /* ======= gallery image fallback ======= */
+  document.querySelectorAll(".gallery-item img").forEach(img => {
+    img.addEventListener("error", () => {
+      img.closest(".gallery-item").classList.add("img-failed");
+    }, { once: true });
+  });
+
   /* ======= lightbox ======= */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
   document.querySelectorAll(".gallery-item").forEach(item => {
     item.addEventListener("click", () => {
-      const src = item.querySelector("img").getAttribute("src");
-      lightboxImg.setAttribute("src", src);
+      if (item.classList.contains("img-failed")) return;
+      const img = item.querySelector("img");
+      lightboxImg.setAttribute("src", img.getAttribute("src"));
+      lightboxImg.setAttribute("alt", img.getAttribute("alt"));
       lightbox.classList.add("open");
     });
   });

@@ -186,6 +186,13 @@ Flat by default. The system conveys hierarchy through hairline borders (Hairline
 - Elements whose hover state already animates `transform` (service cards lift on hover) reveal on `opacity` alone, so the entrance and the hover never fight over the same property.
 - `@media (prefers-reduced-motion: reduce)` forces every `.reveal` element to its final, fully-visible state and collapses all transition/animation durations to near-zero. Nothing on the page depends on motion to become visible or usable.
 
+### Signature Delight Moments
+Restrained, "subtle sophistication" register only, matching a calm and unhurried brand personality. No confetti, no playful copy, no sound: every touch below is quiet enough to miss on a first visit and satisfying to notice on a second.
+- **Years-of-experience count-up:** the "15+" badge on the About photo starts at 0 and counts up once, over 0.9s, the moment it scrolls into view (reuses the existing scroll-reveal observer, no separate trigger). Skips straight to "15+" under reduced motion.
+- **Photo badges tilt on hover:** hovering the About photo tilts the years-badge and the pull-quote a few degrees in opposite directions, reinforcing that DESIGN.md already calls them "physical objects placed on the page." Hover-only, no effect on touch.
+- **WhatsApp button breathes:** the fixed floating action button's shadow pulses on a slow 3.4s cycle, quiet enough to read as "alive" rather than "flashing." Pauses on hover so it doesn't fight the hover-lift.
+- **Graceful photo placeholders:** any gallery `<img>` that fails to load (no photo uploaded yet) hides itself and reveals a centered, on-brand image icon instead of the browser's default broken-image glyph. Clicking a placeholder slot does not open an empty lightbox.
+
 ## 6. Do's and Don'ts
 
 ### Do:

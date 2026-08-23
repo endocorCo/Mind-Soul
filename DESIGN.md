@@ -21,11 +21,17 @@ typography:
     fontWeight: 500
     lineHeight: 1.15
     letterSpacing: "-0.01em"
+  heading:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(1.6rem, 3vw, 2rem)"
+    fontWeight: 500
+    lineHeight: 1.15
+    letterSpacing: "-0.01em"
   title:
     fontFamily: "Fraunces, Georgia, serif"
-    fontSize: "1.5rem"
+    fontSize: "1.25rem"
     fontWeight: 500
-    lineHeight: 1.2
+    lineHeight: 1.3
     letterSpacing: "-0.01em"
   body:
     fontFamily: "Manrope, -apple-system, sans-serif"
@@ -33,9 +39,15 @@ typography:
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
+  secondary:
+    fontFamily: "Manrope, -apple-system, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "normal"
   label:
     fontFamily: "Manrope, -apple-system, sans-serif"
-    fontSize: "0.72rem"
+    fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: "0.18em"
@@ -88,6 +100,7 @@ This system explicitly rejects the generic "therapist template" (leaf/hand icons
 - Serif display type (Fraunces) for anything that should feel considered and human; sans (Manrope) for everything functional.
 - Flat surfaces, hairline dividers, sharp corners; the rare dark section (footer, one feature block, the closing CTA) exists for rhythm, not by default.
 - Mobile is treated as the primary reading surface, not a squeezed-down desktop layout: long stacks (services, gallery) become single-row, swipeable carousels rather than tall vertical stacks.
+- The page reveals itself as one rehearsed sequence on scroll (fade + rise, staggered per card), not as scattered micro-interactions; `prefers-reduced-motion` collapses it to an instant, fully-visible page.
 
 ## 2. Colors
 
@@ -115,14 +128,20 @@ Overwhelmingly neutral, restrained-strategy palette: five grayscale steps plus o
 **Character:** A warm, slightly editorial serif for anything that carries feeling or authority (headlines, names, pull quotes, numerals), paired with a clean, modern grotesque for everything functional (paragraphs, nav, labels, buttons). The pairing reads as "a magazine profile of a professional," not "a SaaS landing page."
 
 ### Hierarchy
+A seven-step scale, `--text-*` custom properties, ratio ≥1.25 at every step that needs real separation:
 - **Display** (500, `clamp(2.6rem, 6vw, 4.4rem)`, line-height 1.05): the hero headline only.
 - **Headline** (500, `clamp(2rem, 4vw, 2.9rem)`, line-height 1.15): section titles ("Cómo puedo acompañarte", "Terapia con enfoque humanista").
-- **Title** (500, 1.5rem–2rem): card and profile-level headings (service names, the practitioner's name).
-- **Body** (400, 1rem, line-height 1.6): paragraphs and descriptions, in Reading Ink. Capped by its containing column (620px section intros, ~520px hero copy) to stay in a comfortable reading measure.
-- **Label** (600, 0.72rem, letter-spacing 0.18em, uppercase): eyebrow kickers above every section heading, in Reading Ink.
+- **Heading** (500, `clamp(1.6rem, 3vw, 2rem)`, line-height 1.15-1.2): third-level titles (the practitioner's name, "Consultorio").
+- **Title / Subheading** (500, 1.25rem): card and item titles (service names, value-prop and process-step titles, FAQ questions). One size for every mid-level title on the page, no exceptions.
+- **Body** (400, 1rem, line-height 1.6): every real paragraph, no exceptions, in Reading Ink. Previously several description paragraphs sat at 14-15px; all body copy is now 16px minimum. Capped near 38-65ch per container so no paragraph runs wider than a comfortable reading measure.
+- **Secondary** (400, 0.875rem): nav links, button labels, footer links and blurb, testimonial attribution — supporting UI text that is deliberately quieter than body copy, never used for sentences meant to be read closely.
+- **Label** (600, 0.75rem, letter-spacing 0.18em, uppercase): eyebrow kickers, micro-labels (about-tags, field labels, footer copyright), in Reading Ink.
+
+Decorative display numerals (the 01-04 markers, the testimonial quote mark, the years-of-experience badge) sit outside this scale on purpose. They are singular accents, not part of the reading hierarchy, so they don't need to fit the ratio.
 
 ### Named Rules
 **The Serif-Says-It-Matters Rule.** If a piece of text is switched into Fraunces italic (the hero's emphasis word, pull quotes, numerals), it is because that specific phrase or figure is the emotional or informational point of its section. Italic serif is never used decoratively.
+**The One Title Size Rule.** Every mid-level title on the page (service, value prop, process step, FAQ question) is `--text-subheading` (1.25rem). A new card or grid does not get to invent its own title size.
 
 ## 4. Elevation
 
@@ -162,6 +181,11 @@ Flat by default. The system conveys hierarchy through hairline borders (Hairline
 - Single row, horizontal scroll with CSS scroll-snap, each item sized to show a peek of the next (78–84% of viewport width for service cards, 68–78% for gallery photos), bleeding past the page's own side padding so the row reaches the screen edge.
 - No visible scrollbar; the peeked next-item is the only affordance that more content follows.
 
+### Scroll Reveal
+- Every card-shaped grid (value props, services, process steps, gallery, testimonials) reveals its children individually, not as one flat block: fade + rise (`opacity` and `transform`, never layout properties), staggered ~0.05-0.08s per item, capped so a 7-item grid still finishes inside ~0.4s.
+- Elements whose hover state already animates `transform` (service cards lift on hover) reveal on `opacity` alone, so the entrance and the hover never fight over the same property.
+- `@media (prefers-reduced-motion: reduce)` forces every `.reveal` element to its final, fully-visible state and collapses all transition/animation durations to near-zero. Nothing on the page depends on motion to become visible or usable.
+
 ## 6. Do's and Don'ts
 
 ### Do:
@@ -170,6 +194,7 @@ Flat by default. The system conveys hierarchy through hairline borders (Hairline
 - **Do** use the shared-hairline-grid construction for new card rows (background: gray, 1px gap, white cards) instead of giving every card its own border and shadow.
 - **Do** convert long, repetitive mobile stacks (3+ similar cards/photos) into the horizontal scroll-snap carousel pattern rather than letting them stack vertically for multiple screens of scroll.
 - **Do** treat mobile as the primary surface: verify nothing overlaps the fixed header, and that floating/absolute-positioned elements (the hero logo, the About photo's badges) get an explicit static-flow fallback below ~999px.
+- **Do** give a new grid's children a staggered `.reveal` entrance (opacity + transform, ~0.05-0.08s apart) instead of letting the whole grid pop in as one block; if the element already animates `transform` on hover, drop the reveal to opacity-only rather than fighting the hover transition for the same property.
 
 ### Don't:
 - **Don't** use the generic "therapist template" look: leaf/hand icons, pastel gradient washes, stock-photo-warm color grading.
@@ -177,4 +202,6 @@ Flat by default. The system conveys hierarchy through hairline borders (Hairline
 - **Don't** add drop shadows to a card or button at rest. Shadows only appear on hover or on the two designated "physical object" badges.
 - **Don't** round corners. The system is sharp-edged everywhere except the circular floating WhatsApp button and the circular practice logo mark.
 - **Don't** let red cover a background, a section, or more than a button/badge-sized area.
+- **Don't** animate layout properties (`max-height`, `width`, `top`) for show/hide state; the FAQ accordion uses `grid-template-rows: 0fr → 1fr` for exactly this reason.
+- **Don't** ship a new transition or animation without a `prefers-reduced-motion` fallback; every existing motion in the system collapses cleanly under it.
 - **Don't** fabricate content to fill a section (credentials, testimonials, phone numbers, social handles) — every fact on this page must come from the practitioner directly.

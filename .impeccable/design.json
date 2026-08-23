@@ -8,58 +8,161 @@
         "role": "neutral",
         "displayName": "Paper White",
         "canonical": "#FFFFFF",
-        "tonalRamp": ["#000000", "#262626", "#4D4D4D", "#737373", "#999999", "#BFBFBF", "#E5E5E5", "#FFFFFF"]
+        "tonalRamp": [
+          "#000000",
+          "#262626",
+          "#4D4D4D",
+          "#737373",
+          "#999999",
+          "#BFBFBF",
+          "#E5E5E5",
+          "#FFFFFF"
+        ]
       },
       "hairline-gray": {
         "role": "neutral",
         "displayName": "Hairline Gray",
         "canonical": "#E5E5E5",
-        "tonalRamp": ["#000000", "#262626", "#4D4D4D", "#737373", "#999999", "#BFBFBF", "#E5E5E5", "#FFFFFF"]
+        "tonalRamp": [
+          "#000000",
+          "#262626",
+          "#4D4D4D",
+          "#737373",
+          "#999999",
+          "#BFBFBF",
+          "#E5E5E5",
+          "#FFFFFF"
+        ]
       },
       "quiet-gray": {
         "role": "neutral",
         "displayName": "Quiet Gray",
         "canonical": "#9E9E9E",
-        "tonalRamp": ["#000000", "#262626", "#4D4D4D", "#737373", "#9E9E9E", "#BFBFBF", "#E5E5E5", "#FFFFFF"]
+        "tonalRamp": [
+          "#000000",
+          "#262626",
+          "#4D4D4D",
+          "#737373",
+          "#9E9E9E",
+          "#BFBFBF",
+          "#E5E5E5",
+          "#FFFFFF"
+        ]
       },
       "reading-ink": {
         "role": "neutral",
         "displayName": "Reading Ink",
         "canonical": "#333333",
-        "tonalRamp": ["#000000", "#1A1A1A", "#333333", "#4D4D4D", "#737373", "#999999", "#BFBFBF", "#FFFFFF"]
+        "tonalRamp": [
+          "#000000",
+          "#1A1A1A",
+          "#333333",
+          "#4D4D4D",
+          "#737373",
+          "#999999",
+          "#BFBFBF",
+          "#FFFFFF"
+        ]
       },
       "editorial-black": {
         "role": "neutral",
         "displayName": "Editorial Black",
         "canonical": "#000000",
-        "tonalRamp": ["#000000", "#1A1A1A", "#333333", "#4D4D4D", "#737373", "#999999", "#E5E5E5", "#FFFFFF"]
+        "tonalRamp": [
+          "#000000",
+          "#1A1A1A",
+          "#333333",
+          "#4D4D4D",
+          "#737373",
+          "#999999",
+          "#E5E5E5",
+          "#FFFFFF"
+        ]
       },
       "editorial-red": {
         "role": "primary",
         "displayName": "Editorial Red",
         "canonical": "oklch(56% 0.21 25)",
-        "tonalRamp": ["#3D0E0C", "#5C1512", "#7C1B18", "#B02D27", "#E53935", "#EA5C53", "#F08A83", "#F8C4C0"]
+        "tonalRamp": [
+          "#3D0E0C",
+          "#5C1512",
+          "#7C1B18",
+          "#B02D27",
+          "#E53935",
+          "#EA5C53",
+          "#F08A83",
+          "#F8C4C0"
+        ]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero headline only, italic word carries the accent color." },
-      "headline": { "displayName": "Headline", "purpose": "Section titles below each eyebrow label." },
-      "title": { "displayName": "Title", "purpose": "Card headings and the practitioner's name." },
-      "body": { "displayName": "Body", "purpose": "All readable paragraph copy, capped near 65-75ch." },
-      "label": { "displayName": "Label / Eyebrow", "purpose": "Uppercase kicker above every section heading and nav links." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only, italic word carries the accent color."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles below each eyebrow label."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "Third-level titles: the practitioner's name, 'Consultorio'."
+      },
+      "title": {
+        "displayName": "Title / Subheading",
+        "purpose": "One shared size for every card/item title: services, value props, process steps, FAQ questions."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All readable paragraph copy, 16px minimum, capped near 38-65ch."
+      },
+      "secondary": {
+        "displayName": "Secondary",
+        "purpose": "Supporting UI text: nav links, buttons, footer links, attribution. Never used for sentences meant to be read closely."
+      },
+      "label": {
+        "displayName": "Label / Eyebrow",
+        "purpose": "Uppercase kicker above every section heading, micro-labels, footer copyright."
+      }
     },
     "shadows": [
-      { "name": "card-hover-lift", "value": "0 22px 40px -20px rgba(0,0,0,0.16)", "purpose": "Applied only on card :hover, paired with translateY(-6px). Never present at rest." },
-      { "name": "badge-resting", "value": "0 20px 40px -20px rgba(0,0,0,0.2)", "purpose": "The two small badges overlapping the About photo (years-of-experience stat, pull quote)." },
-      { "name": "floating-action", "value": "0 10px 30px -8px rgba(229,57,53,0.5)", "purpose": "Fixed WhatsApp button; shadow tinted with the accent's own hue." }
+      {
+        "name": "card-hover-lift",
+        "value": "0 22px 40px -20px rgba(0,0,0,0.16)",
+        "purpose": "Applied only on card :hover, paired with translateY(-6px). Never present at rest."
+      },
+      {
+        "name": "badge-resting",
+        "value": "0 20px 40px -20px rgba(0,0,0,0.2)",
+        "purpose": "The two small badges overlapping the About photo (years-of-experience stat, pull quote)."
+      },
+      {
+        "name": "floating-action",
+        "value": "0 10px 30px -8px rgba(229,57,53,0.5)",
+        "purpose": "Fixed WhatsApp button; shadow tinted with the accent's own hue."
+      }
     ],
     "motion": [
-      { "name": "ease-standard", "value": "cubic-bezier(0.16,0.84,0.44,1)", "purpose": "Scroll-reveal entrances and the mobile menu slide-in; an ease-out-quint feel, no bounce." },
-      { "name": "hover-lift", "value": "all 0.3s ease", "purpose": "Buttons and cards on hover: brightness/background shift plus a small translateY." }
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.16,0.84,0.44,1)",
+        "purpose": "Scroll-reveal entrances and the mobile menu slide-in; an ease-out-quint feel, no bounce."
+      },
+      {
+        "name": "hover-lift",
+        "value": "all 0.3s ease",
+        "purpose": "Buttons and cards on hover: brightness/background shift plus a small translateY."
+      }
     ],
     "breakpoints": [
-      { "name": "tablet-and-below", "value": "999px" },
-      { "name": "phone", "value": "620px" }
+      {
+        "name": "tablet-and-below",
+        "value": "999px"
+      },
+      {
+        "name": "phone",
+        "value": "620px"
+      }
     ]
   },
   "components": [
@@ -69,7 +172,7 @@
       "refersTo": "button-primary",
       "description": "The booking/WhatsApp action. Solid red, sharp corners, brightens on hover rather than changing hue.",
       "html": "<button class=\"ds-btn-primary\">Agendar una cita</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em; background: #E53935; border: 1px solid #E53935; color: #fff; cursor: pointer; transition: filter 0.3s ease, transform 0.3s ease; } .ds-btn-primary:hover { filter: brightness(0.88); transform: translateY(-2px); } .ds-btn-primary:focus-visible { outline: 2px solid #E53935; outline-offset: 3px; }"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: 'Manrope', sans-serif; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.03em; background: #E53935; border: 1px solid #E53935; color: #fff; cursor: pointer; transition: filter 0.3s ease, transform 0.3s ease; } .ds-btn-primary:hover { filter: brightness(0.88); transform: translateY(-2px); } .ds-btn-primary:focus-visible { outline: 2px solid #E53935; outline-offset: 3px; }"
     },
     {
       "name": "Ghost Button",
@@ -77,7 +180,7 @@
       "refersTo": "button-ghost",
       "description": "Secondary/tertiary action on a light surface. Transparent, fills solid black on hover.",
       "html": "<button class=\"ds-btn-ghost\">Conocer mis servicios</button>",
-      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em; background: transparent; border: 1px solid #333333; color: #333333; cursor: pointer; transition: all 0.3s ease; } .ds-btn-ghost:hover { background: #000000; border-color: #000000; color: #fff; transform: translateY(-2px); } .ds-btn-ghost:focus-visible { outline: 2px solid #333333; outline-offset: 3px; }"
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: 'Manrope', sans-serif; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.03em; background: transparent; border: 1px solid #333333; color: #333333; cursor: pointer; transition: all 0.3s ease; } .ds-btn-ghost:hover { background: #000000; border-color: #000000; color: #fff; transform: translateY(-2px); } .ds-btn-ghost:focus-visible { outline: 2px solid #333333; outline-offset: 3px; }"
     },
     {
       "name": "Service Card",
@@ -85,7 +188,7 @@
       "refersTo": "card",
       "description": "Flat white card with a leading icon, title, description and price. Lifts on hover, no shadow at rest.",
       "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21v-1a8 8 0 0 1 16 0v1\"/></svg></div><h4 class=\"ds-card-title\">Terapia individual</h4><p class=\"ds-card-body\">Un espacio personal para explorar, comprender y trabajar en tu bienestar emocional, a tu ritmo.</p><p class=\"ds-card-price\">$500 MXN</p></div>",
-      "css": ".ds-card { background: #fff; padding: 38px 32px; font-family: 'Manrope', sans-serif; transition: transform 0.35s ease, box-shadow 0.35s ease; } .ds-card:hover { transform: translateY(-6px); box-shadow: 0 22px 40px -20px rgba(0,0,0,0.16); } .ds-card-icon { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border: 1px solid #E5E5E5; color: #9E9E9E; margin-bottom: 22px; } .ds-card-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.18rem; margin: 0 0 10px; color: #000; } .ds-card-body { font-size: 0.9rem; color: #333333; margin: 0 0 14px; line-height: 1.6; } .ds-card-price { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: #000; margin: 0; }"
+      "css": ".ds-card { background: #fff; padding: 38px 32px; font-family: 'Manrope', sans-serif; transition: transform 0.35s ease, box-shadow 0.35s ease; } .ds-card:hover { transform: translateY(-6px); box-shadow: 0 22px 40px -20px rgba(0,0,0,0.16); } .ds-card-icon { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border: 1px solid #E5E5E5; color: #9E9E9E; margin-bottom: 22px; } .ds-card-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.25rem; margin: 0 0 10px; color: #000; } .ds-card-body { font-size: 1rem; color: #333333; margin: 0 0 14px; line-height: 1.6; } .ds-card-price { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.25rem; color: #000; margin: 0; }"
     },
     {
       "name": "Specialty Chip",
@@ -114,10 +217,26 @@
       "Mobile is the primary reading surface: long stacks become single-row, swipeable carousels rather than tall vertical stacks."
     ],
     "rules": [
-      { "name": "The Rationed Red Rule", "body": "Red never covers a surface larger than a button or a badge. If a whole section wants to feel important, it goes to Editorial Black or a mid-gray dark surface, not red.", "section": "colors" },
-      { "name": "The Readable Gray Rule", "body": "Quiet Gray (#9E9E9E) is for icons and truly decorative marks only. Anything a visitor is meant to read is Reading Ink (#333333) or darker.", "section": "colors" },
-      { "name": "The Serif-Says-It-Matters Rule", "body": "If a piece of text is switched into Fraunces italic, it is because that specific phrase or figure is the emotional or informational point of its section. Italic serif is never used decoratively.", "section": "typography" },
-      { "name": "The Flat-At-Rest Rule", "body": "Nothing has a shadow until it does something (hover) or needs to read as a physical object overlapping a photo. A static card is always flat.", "section": "elevation" }
+      {
+        "name": "The Rationed Red Rule",
+        "body": "Red never covers a surface larger than a button or a badge. If a whole section wants to feel important, it goes to Editorial Black or a mid-gray dark surface, not red.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readable Gray Rule",
+        "body": "Quiet Gray (#9E9E9E) is for icons and truly decorative marks only. Anything a visitor is meant to read is Reading Ink (#333333) or darker.",
+        "section": "colors"
+      },
+      {
+        "name": "The Serif-Says-It-Matters Rule",
+        "body": "If a piece of text is switched into Fraunces italic, it is because that specific phrase or figure is the emotional or informational point of its section. Italic serif is never used decoratively.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-At-Rest Rule",
+        "body": "Nothing has a shadow until it does something (hover) or needs to read as a physical object overlapping a photo. A static card is always flat.",
+        "section": "elevation"
+      }
     ],
     "dos": [
       "Do keep the accent to Editorial Red (#E53935) and nothing else.",

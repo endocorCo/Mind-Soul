@@ -103,6 +103,17 @@
   .reveal-delay-3{ transition-delay: 0.24s; }
   .reveal-delay-4{ transition-delay: 0.32s; }
 
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .reveal{ opacity: 1; transform: none; }
+    *{
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* ---------- header ---------- */
   header{
     position: fixed;
@@ -322,12 +333,16 @@
   .value-item{
     background: var(--bg);
     padding: 44px 30px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, opacity 0.9s cubic-bezier(.16,.84,.44,1), transform 0.9s cubic-bezier(.16,.84,.44,1);
   }
   .value-item:hover{ background: var(--bg-alt); }
   .value-item .num{ font-family:'Fraunces', serif; font-style:italic; color: var(--accent); font-size:1.1rem; }
   .value-item h4{ font-size: var(--text-subheading); margin: 18px 0 10px; }
   .value-item p{ font-size: var(--text-body); color: var(--ink-soft); }
+  .value-grid .value-item:nth-child(1){ transition-delay: 0s; }
+  .value-grid .value-item:nth-child(2){ transition-delay: .08s; }
+  .value-grid .value-item:nth-child(3){ transition-delay: .16s; }
+  .value-grid .value-item:nth-child(4){ transition-delay: .24s; }
 
   /* ---------- about ---------- */
   .about{ background: var(--bg-alt); }
@@ -413,9 +428,13 @@
   .service-card{
     background: var(--card);
     padding: 38px 32px;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.7s cubic-bezier(.16,.84,.44,1);
     position:relative;
   }
+  .service-card.reveal{ transform: none; }
+  .service-grid .service-card:nth-child(1){ transition-delay: 0s; }
+  .service-grid .service-card:nth-child(2){ transition-delay: .08s; }
+  .service-grid .service-card:nth-child(3){ transition-delay: .16s; }
   .service-card:hover{
     transform: translateY(-6px);
     box-shadow: 0 22px 40px -20px rgba(0,0,0,0.16);
@@ -448,6 +467,14 @@
   }
   .service-link svg{ width:14px; height:14px; transition: transform 0.3s ease; }
   .service-card:hover .service-link svg{ transform: translateX(4px); }
+  .services-note{
+    text-align:center;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size: var(--text-subheading);
+    color: var(--ink-soft);
+    margin-top: 48px;
+  }
 
   /* ---------- featured service ---------- */
   .featured{
@@ -482,6 +509,10 @@
     gap: 40px;
   }
   .process-item{ position:relative; padding-top: 26px; border-top: 1px solid var(--line); }
+  .process-grid .process-item:nth-child(1){ transition-delay: 0s; }
+  .process-grid .process-item:nth-child(2){ transition-delay: .08s; }
+  .process-grid .process-item:nth-child(3){ transition-delay: .16s; }
+  .process-grid .process-item:nth-child(4){ transition-delay: .24s; }
   .process-item .num{
     font-family:'Fraunces', serif;
     font-style: italic;
@@ -507,6 +538,11 @@
     background-color: var(--bg-alt);
     aspect-ratio: 1 / 1;
   }
+  .gallery-grid .gallery-item:nth-child(1){ transition-delay: 0s; }
+  .gallery-grid .gallery-item:nth-child(2){ transition-delay: .05s; }
+  .gallery-grid .gallery-item:nth-child(3){ transition-delay: .1s; }
+  .gallery-grid .gallery-item:nth-child(4){ transition-delay: .15s; }
+  .gallery-grid .gallery-item:nth-child(n+5){ transition-delay: .2s; }
   .gallery-item img{ width:100%; height:100%; object-fit:cover; transition: transform 0.6s cubic-bezier(.16,.84,.44,1); }
   .gallery-item:hover img{ transform: scale(1.07); }
   .gallery-item::after{
@@ -532,7 +568,12 @@
     opacity:0; pointer-events:none; transition: opacity 0.3s ease;
   }
   .lightbox.open{ opacity:1; pointer-events:auto; }
-  .lightbox img{ max-width: 88vw; max-height: 84vh; object-fit:contain; }
+  .lightbox img{
+    max-width: 88vw; max-height: 84vh; object-fit:contain;
+    transform: scale(0.96);
+    transition: transform 0.35s cubic-bezier(.16,.84,.44,1);
+  }
+  .lightbox.open img{ transform: scale(1); }
   .lightbox-close{
     position:absolute; top: 28px; right: 32px;
     color:#fff; font-size: 1rem; letter-spacing:0.05em;
@@ -545,6 +586,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
   }
+  .testimonial-grid .testimonial-card:nth-child(1){ transition-delay: 0s; }
+  .testimonial-grid .testimonial-card:nth-child(2){ transition-delay: .08s; }
+  .testimonial-grid .testimonial-card:nth-child(3){ transition-delay: .16s; }
   .testimonial-card{
     background: var(--card);
     border: 1px dashed var(--line);
@@ -579,11 +623,12 @@
   .faq-q svg{ flex-shrink:0; transition: transform 0.35s ease, color 0.25s ease; color: var(--ink-meta); }
   .faq-item.open .faq-q svg{ transform: rotate(45deg); color: var(--accent); }
   .faq-a{
-    max-height:0;
-    overflow:hidden;
-    transition: max-height 0.4s ease;
+    display:grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(.16,.84,.44,1);
   }
-  .faq-a p{ padding-bottom: 26px; color: var(--ink-soft); max-width: 65ch; font-size: var(--text-body); }
+  .faq-item.open .faq-a{ grid-template-rows: 1fr; }
+  .faq-a p{ overflow:hidden; padding-bottom: 26px; color: var(--ink-soft); max-width: 65ch; font-size: var(--text-body); }
 
   /* ---------- location ---------- */
   .location-grid{
@@ -592,6 +637,7 @@
     gap: 0;
     border: 1px solid var(--line);
   }
+  .location-grid .map-frame{ transition-delay: .1s; }
   .location-info{ padding: 56px 48px; background: var(--card); }
   .location-info h3{ font-size: var(--text-heading); line-height: 1.2; margin-bottom: 22px; }
   .location-row{ display:flex; gap:14px; margin-bottom: 20px; align-items:flex-start; }
@@ -806,23 +852,23 @@
       <p>Centrada en la persona, su bienestar y su potencial de crecimiento. Así es como acompaño cada proceso, sea cual sea la etapa de vida en la que te encuentres.</p>
     </div>
 
-    <div class="value-grid reveal">
-      <div class="value-item">
+    <div class="value-grid">
+      <div class="value-item reveal">
         <span class="num">01</span>
         <h4>Atención personalizada</h4>
         <p>Cada proceso se adapta a tu ritmo, tu historia y lo que necesitas en este momento.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="num">02</span>
         <h4>Escucha profesional</h4>
         <p>Un espacio donde puedes hablar con libertad, sin ser interrumpido ni juzgado.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="num">03</span>
         <h4>Espacio seguro y confidencial</h4>
         <p>Todo lo que se comparte en sesión se mantiene bajo estricta confidencialidad.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="num">04</span>
         <h4>Acompañamiento individualizado</h4>
         <p>No hay fórmulas genéricas, cada plan de trabajo se construye contigo.</p>
@@ -837,11 +883,11 @@
     <div class="about-grid">
       <div class="reveal" style="position:relative;">
         <div class="about-photo"></div>
-        <div class="about-stat">
+        <div class="about-stat reveal reveal-delay-2">
           <span class="about-stat-num">15+</span>
           <span class="about-stat-label">Años de<br>experiencia</span>
         </div>
-        <div class="about-quote">
+        <div class="about-quote reveal reveal-delay-3">
           "Cuidar tu mente es vivir mejor"
         </div>
       </div>
@@ -875,23 +921,23 @@
       <p>Atención para niños, adolescentes y adultos, presencial en Texcoco o en línea — tú eliges la opción que mejor se adapta a tu vida.</p>
     </div>
 
-    <div class="services-category reveal">
+    <div class="services-category">
       <div class="service-grid">
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-icon"><i data-lucide="user-round"></i></div>
           <h4>Terapia individual</h4>
           <p>Un espacio personal para explorar, comprender y trabajar en tu bienestar emocional, a tu ritmo.</p>
           <p class="service-price">$500 MXN</p>
           <a href="#" class="service-link wa-link" target="_blank" rel="noopener">Solicitar información <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-icon"><i data-lucide="heart-handshake"></i></div>
           <h4>Terapia de pareja</h4>
           <p>Fortalece la comunicación y el vínculo desde la comprensión mutua y el respeto.</p>
           <p class="service-price">$750 MXN</p>
           <a href="#" class="service-link wa-link" target="_blank" rel="noopener">Solicitar información <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-icon"><i data-lucide="users-round"></i></div>
           <h4>Terapia familiar y grupal</h4>
           <p>Espacios de acompañamiento para familias y grupos que buscan crecer juntos.</p>
@@ -899,7 +945,7 @@
           <a href="#" class="service-link wa-link" target="_blank" rel="noopener">Solicitar información <i data-lucide="arrow-right"></i></a>
         </div>
       </div>
-      <p class="services-note">"Tú eliges la opción que mejor se adapta a tu vida."</p>
+      <p class="services-note reveal reveal-delay-1">"Tú eliges la opción que mejor se adapta a tu vida."</p>
     </div>
   </div>
 </section>
@@ -935,23 +981,23 @@
       <h2>Dar el primer paso es sencillo</h2>
     </div>
 
-    <div class="process-grid reveal">
-      <div class="process-item">
+    <div class="process-grid">
+      <div class="process-item reveal">
         <span class="num">01</span>
         <h4>Contáctame</h4>
         <p>Escríbeme por WhatsApp o correo para contarme un poco sobre lo que buscas.</p>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <span class="num">02</span>
         <h4>Cuéntame qué necesitas</h4>
         <p>Platicamos brevemente para entender tu situación y ver cómo puedo acompañarte.</p>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <span class="num">03</span>
         <h4>Agendamos tu sesión</h4>
         <p>Buscamos juntos el horario que mejor se acomode a tu disponibilidad. Para confirmar tu primera cita se solicita un 30% de anticipo.</p>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <span class="num">04</span>
         <h4>Comenzamos tu proceso</h4>
         <p>Iniciamos el acompañamiento a tu ritmo, siempre en un espacio seguro.</p>
@@ -969,32 +1015,32 @@
       <p>[Nota breve sobre el consultorio o el espacio de atención.]</p>
     </div>
 
-    <div class="gallery-grid reveal">
-      <div class="gallery-item" data-full="fotos/galeria-1.jpg">
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" data-full="fotos/galeria-1.jpg">
         <img src="fotos/galeria-1.jpg" alt="Consultorio">
         <span>Consultorio</span>
       </div>
-      <div class="gallery-item" data-full="fotos/galeria-2.jpg">
+      <div class="gallery-item reveal" data-full="fotos/galeria-2.jpg">
         <img src="fotos/galeria-2.jpg" alt="Detalle del espacio">
         <span>Detalle</span>
       </div>
-      <div class="gallery-item" data-full="fotos/galeria-3.jpg">
+      <div class="gallery-item reveal" data-full="fotos/galeria-3.jpg">
         <img src="fotos/galeria-3.jpg" alt="Sala de espera">
         <span>Sala de espera</span>
       </div>
-      <div class="gallery-item" data-full="fotos/galeria-4.jpg">
+      <div class="gallery-item reveal" data-full="fotos/galeria-4.jpg">
         <img src="fotos/galeria-4.jpg" alt="Fotografía profesional">
         <span>Retrato</span>
       </div>
-      <div class="gallery-item" data-full="fotos/galeria-5.jpg">
+      <div class="gallery-item reveal" data-full="fotos/galeria-5.jpg">
         <img src="fotos/galeria-5.jpg" alt="Detalle de marca">
         <span>Marca</span>
       </div>
-      <div class="gallery-item" data-full="fotos/galeria-6.jpg">
+      <div class="gallery-item reveal" data-full="fotos/galeria-6.jpg">
         <img src="fotos/galeria-6.jpg" alt="Espacio de sesión">
         <span>Espacio de sesión</span>
       </div>
-      <div class="gallery-item" data-full="fotos/galeria-7.jpg">
+      <div class="gallery-item reveal" data-full="fotos/galeria-7.jpg">
         <img src="fotos/galeria-7.jpg" alt="Detalle del consultorio">
         <span>Detalle</span>
       </div>
@@ -1010,18 +1056,18 @@
       <h2>Lo que comparten quienes han iniciado su proceso</h2>
     </div>
 
-    <div class="testimonial-grid reveal">
-      <div class="testimonial-card">
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
         <span class="quote-mark">"</span>
         <p>[Testimonio real del paciente. Reemplazar antes de publicar.]</p>
         <span class="name">[Nombre o iniciales, con autorización]</span>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card reveal">
         <span class="quote-mark">"</span>
         <p>[Testimonio real del paciente. Reemplazar antes de publicar.]</p>
         <span class="name">[Nombre o iniciales, con autorización]</span>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card reveal">
         <span class="quote-mark">"</span>
         <p>[Testimonio real del paciente. Reemplazar antes de publicar.]</p>
         <span class="name">[Nombre o iniciales, con autorización]</span>
@@ -1075,8 +1121,8 @@
       <h2>Dónde encontrarme</h2>
     </div>
 
-    <div class="location-grid reveal">
-      <div class="location-info">
+    <div class="location-grid">
+      <div class="location-info reveal">
         <h3>Consultorio</h3>
 
         <div class="location-row">
@@ -1116,7 +1162,7 @@
         </a>
       </div>
 
-      <div class="map-frame">
+      <div class="map-frame reveal">
         <iframe
           src="https://www.google.com/maps?q=Calle+5+de+Mayo+21,+Texcoco,+Estado+de+M%C3%A9xico&output=embed"
           loading="lazy"
@@ -1244,16 +1290,16 @@
   /* ======= FAQ accordion ======= */
   document.querySelectorAll(".faq-item").forEach(item => {
     const q = item.querySelector(".faq-q");
-    const a = item.querySelector(".faq-a");
+    q.setAttribute("aria-expanded", "false");
     q.addEventListener("click", () => {
       const isOpen = item.classList.contains("open");
       document.querySelectorAll(".faq-item").forEach(i => {
         i.classList.remove("open");
-        i.querySelector(".faq-a").style.maxHeight = null;
+        i.querySelector(".faq-q").setAttribute("aria-expanded", "false");
       });
       if (!isOpen) {
         item.classList.add("open");
-        a.style.maxHeight = a.scrollHeight + "px";
+        q.setAttribute("aria-expanded", "true");
       }
     });
   });

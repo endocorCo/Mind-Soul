@@ -11,9 +11,9 @@ colors:
 typography:
   display:
     fontFamily: "Fraunces, Georgia, serif"
-    fontSize: "clamp(2.6rem, 6vw, 4.4rem)"
-    fontWeight: 500
-    lineHeight: 1.05
+    fontSize: "clamp(2.75rem, 5vw + 1.5rem, 6rem)"
+    fontWeight: 600
+    lineHeight: 0.98
     letterSpacing: "-0.01em"
   headline:
     fontFamily: "Fraunces, Georgia, serif"
@@ -101,6 +101,7 @@ This system explicitly rejects the generic "therapist template" (leaf/hand icons
 - Flat surfaces, hairline dividers, sharp corners; the rare dark section (footer, one feature block, the closing CTA) exists for rhythm, not by default.
 - Mobile is treated as the primary reading surface, not a squeezed-down desktop layout: long stacks (services, gallery) become single-row, swipeable carousels rather than tall vertical stacks.
 - The page reveals itself as one rehearsed sequence on scroll (fade + rise, staggered per card), not as scattered micro-interactions; `prefers-reduced-motion` collapses it to an instant, fully-visible page.
+- Boldness is rationed the same way color is: the opening hero headline and the closing CTA run large, heavy (600) and tight-set; everything between them stays at the calm, restrained scale. See the Two Bookends Rule.
 
 ## 2. Colors
 
@@ -129,7 +130,7 @@ Overwhelmingly neutral, restrained-strategy palette: five grayscale steps plus o
 
 ### Hierarchy
 A seven-step scale, `--text-*` custom properties, ratio ≥1.25 at every step that needs real separation:
-- **Display** (500, `clamp(2.6rem, 6vw, 4.4rem)`, line-height 1.05): the hero headline only.
+- **Display** (600, `clamp(2.75rem, 5vw + 1.5rem, 6rem)`, line-height 0.98): the hero headline only. The hero's italic emphasis word drops to weight 400 against the 600 roman text around it, a heavy-roman/light-italic pairing borrowed from print editorial headlines, not a color trick.
 - **Headline** (500, `clamp(2rem, 4vw, 2.9rem)`, line-height 1.15): section titles ("Cómo puedo acompañarte", "Terapia con enfoque humanista").
 - **Heading** (500, `clamp(1.6rem, 3vw, 2rem)`, line-height 1.15-1.2): third-level titles (the practitioner's name, "Consultorio").
 - **Title / Subheading** (500, 1.25rem): card and item titles (service names, value-prop and process-step titles, FAQ questions). One size for every mid-level title on the page, no exceptions.
@@ -142,6 +143,7 @@ Decorative display numerals (the 01-04 markers, the testimonial quote mark, the 
 ### Named Rules
 **The Serif-Says-It-Matters Rule.** If a piece of text is switched into Fraunces italic (the hero's emphasis word, pull quotes, numerals), it is because that specific phrase or figure is the emotional or informational point of its section. Italic serif is never used decoratively.
 **The One Title Size Rule.** Every mid-level title on the page (service, value prop, process step, FAQ question) is `--text-subheading` (1.25rem). A new card or grid does not get to invent its own title size.
+**The Two Bookends Rule.** Boldness is spent in exactly two places: the opening hero headline and the closing CTA headline. Both run heavier (600) and larger than the standard Headline tier, with tighter line-height (0.98-1.02) and extra section padding (180px on the closing CTA vs. the standard 110px). Every other heading on the page stays at the restrained Headline/Heading sizes. The contrast between "loud at the bookends, quiet everywhere else" is what reads as confident; making every heading bigger would just read as inflated.
 
 ## 4. Elevation
 

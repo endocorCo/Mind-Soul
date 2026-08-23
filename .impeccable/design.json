@@ -98,7 +98,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Hero headline only, italic word carries the accent color."
+        "purpose": "Hero headline only, weight 600 (heavier than every other heading), italic emphasis word drops to 400 for print-style contrast."
       },
       "headline": {
         "displayName": "Headline",

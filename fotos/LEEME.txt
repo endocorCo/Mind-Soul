@@ -1,0 +1,48 @@
+Carpeta de fotos — Mind & Soul
+================================
+
+Arrastra aquí las imágenes usando EXACTAMENTE estos nombres de archivo
+(en minúsculas, con esas extensiones) y aparecerán solas en la página,
+sin tocar nada del código.
+
+FOTO PRINCIPAL
+--------------
+hero.jpg
+  Dónde se usa: fondo del hero (portada) y vista previa al compartir el link.
+  Sugerencia: foto ancha del consultorio o retrato ambiental.
+  Tamaño recomendado: 1920x1080 px o similar (horizontal).
+
+SOBRE MÍ
+--------
+sobre-mi.jpg
+  Dónde se usa: sección "Sobre mí".
+  Sugerencia: retrato de la psicóloga en el consultorio.
+  Tamaño recomendado: vertical, proporción 4:5 (ej. 1000x1250 px).
+
+MODALIDADES
+-----------
+servicio-destacado.jpg
+  Dónde se usa: sección "Modalidades" (Presencial o en línea).
+  Tamaño recomendado: cuadrada, proporción 1:1 (ej. 1200x1200 px).
+
+CIERRE
+------
+cierre.jpg
+  Dónde se usa: fondo de la sección final antes del pie de página.
+  Tamaño recomendado: 1920x1080 px o similar (horizontal, con espacio
+  para que el texto en blanco se lea encima).
+
+GALERÍA (7 fotos)
+-----------------
+galeria-1.jpg   Consultorio (foto alta)
+galeria-2.jpg   Detalle del espacio
+galeria-3.jpg   Sala de espera (foto ancha)
+galeria-4.jpg   Retrato / foto profesional
+galeria-5.jpg   Detalle de marca
+galeria-6.jpg   Espacio de sesión (foto alta)
+galeria-7.jpg   Detalle del consultorio
+  Tamaño recomendado: mínimo 800x800 px cada una.
+
+------------------------------------------------
+Este archivo (LEEME.txt) se puede borrar cuando ya
+no lo necesites; no forma parte del sitio.

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js" defer></script>
 
 <style>
   :root{
@@ -39,7 +39,6 @@
     --dark-surface: var(--color-gray-dark);
     --line: var(--color-gray-light);
     --card: var(--color-white);
-    --radius: 2px;
 
     /* escala tipográfica (ratio ~1.25, fluida en los tamaños grandes) */
     --text-caption: 0.75rem;
@@ -84,6 +83,8 @@
   a{ color: inherit; text-decoration: none; }
   img{ display:block; max-width:100%; }
   button{ font-family: inherit; cursor:pointer; border:none; background:none; }
+
+  :focus-visible{ outline: 2px solid var(--color-red); outline-offset: 3px; }
 
   .wrap{
     max-width: 1180px;
@@ -338,7 +339,7 @@
   }
   .value-item:hover{ background: var(--bg-alt); }
   .value-item .num{ font-family:'Fraunces', serif; font-style:italic; color: var(--accent); font-size:1.1rem; }
-  .value-item h4{ font-size: var(--text-subheading); margin: 18px 0 10px; }
+  .value-item h3{ font-size: var(--text-subheading); margin: 18px 0 10px; }
   .value-item p{ font-size: var(--text-body); color: var(--ink-soft); }
   .value-grid .value-item:nth-child(1){ transition-delay: 0s; }
   .value-grid .value-item:nth-child(2){ transition-delay: .08s; }
@@ -454,7 +455,7 @@
     color: var(--ink-meta);
     margin-bottom: 22px;
   }
-  .service-card h4{ font-size: var(--text-subheading); margin-bottom: 10px; }
+  .service-card h3{ font-size: var(--text-subheading); margin-bottom: 10px; }
   .service-card p{ font-size: var(--text-body); color: var(--ink-soft); margin-bottom: 22px; }
   .service-card .service-price{
     font-family: 'Fraunces', serif;
@@ -528,7 +529,7 @@
     display:block;
     margin-bottom: 18px;
   }
-  .process-item h4{ font-size: var(--text-subheading); margin-bottom: 10px; }
+  .process-item h3{ font-size: var(--text-subheading); margin-bottom: 10px; }
   .process-item p{ font-size: var(--text-body); color: var(--ink-soft); }
 
   /* ---------- gallery ---------- */
@@ -788,7 +789,7 @@
 
     <a href="#" class="btn btn-solid desktop-only wa-link" target="_blank" rel="noopener">Agendar cita</a>
 
-    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -804,6 +805,7 @@
   <a href="#" class="btn btn-solid wa-link" target="_blank" rel="noopener" style="margin-top:10px;">Agendar cita</a>
 </div>
 
+<main>
 <!-- ================= HERO ================= -->
 <section class="hero" id="inicio">
   <div class="hero-bg"></div>
@@ -849,22 +851,22 @@
     <div class="value-grid">
       <div class="value-item reveal">
         <span class="num">01</span>
-        <h4>Atención personalizada</h4>
+        <h3>Atención personalizada</h3>
         <p>Cada proceso se adapta a tu ritmo, tu historia y lo que necesitas en este momento.</p>
       </div>
       <div class="value-item reveal">
         <span class="num">02</span>
-        <h4>Escucha profesional</h4>
+        <h3>Escucha profesional</h3>
         <p>Un espacio donde puedes hablar con libertad, sin ser interrumpido ni juzgado.</p>
       </div>
       <div class="value-item reveal">
         <span class="num">03</span>
-        <h4>Espacio seguro y confidencial</h4>
+        <h3>Espacio seguro y confidencial</h3>
         <p>Todo lo que se comparte en sesión se mantiene bajo estricta confidencialidad.</p>
       </div>
       <div class="value-item reveal">
         <span class="num">04</span>
-        <h4>Acompañamiento individualizado</h4>
+        <h3>Acompañamiento individualizado</h3>
         <p>No hay fórmulas genéricas, cada plan de trabajo se construye contigo.</p>
       </div>
     </div>
@@ -919,21 +921,21 @@
       <div class="service-grid">
         <div class="service-card reveal">
           <div class="service-icon"><i data-lucide="user-round"></i></div>
-          <h4>Terapia individual</h4>
+          <h3>Terapia individual</h3>
           <p>Un espacio personal para explorar, comprender y trabajar en tu bienestar emocional, a tu ritmo.</p>
           <p class="service-price">$500 MXN</p>
           <a href="#" class="service-link wa-link" target="_blank" rel="noopener">Solicitar información <i data-lucide="arrow-right"></i></a>
         </div>
         <div class="service-card reveal">
           <div class="service-icon"><i data-lucide="heart-handshake"></i></div>
-          <h4>Terapia de pareja</h4>
+          <h3>Terapia de pareja</h3>
           <p>Fortalece la comunicación y el vínculo desde la comprensión mutua y el respeto.</p>
           <p class="service-price">$750 MXN</p>
           <a href="#" class="service-link wa-link" target="_blank" rel="noopener">Solicitar información <i data-lucide="arrow-right"></i></a>
         </div>
         <div class="service-card reveal">
           <div class="service-icon"><i data-lucide="users-round"></i></div>
-          <h4>Terapia familiar y grupal</h4>
+          <h3>Terapia familiar y grupal</h3>
           <p>Espacios de acompañamiento para familias y grupos que buscan crecer juntos.</p>
           <p class="service-price">Costo según el número de participantes</p>
           <a href="#" class="service-link wa-link" target="_blank" rel="noopener">Solicitar información <i data-lucide="arrow-right"></i></a>
@@ -978,22 +980,22 @@
     <div class="process-grid">
       <div class="process-item reveal">
         <span class="num">01</span>
-        <h4>Contáctame</h4>
+        <h3>Contáctame</h3>
         <p>Escríbeme por WhatsApp o correo para contarme un poco sobre lo que buscas.</p>
       </div>
       <div class="process-item reveal">
         <span class="num">02</span>
-        <h4>Cuéntame qué necesitas</h4>
+        <h3>Cuéntame qué necesitas</h3>
         <p>Platicamos brevemente para entender tu situación y ver cómo puedo acompañarte.</p>
       </div>
       <div class="process-item reveal">
         <span class="num">03</span>
-        <h4>Agendamos tu sesión</h4>
+        <h3>Agendamos tu sesión</h3>
         <p>Buscamos juntos el horario que mejor se acomode a tu disponibilidad. Para confirmar tu primera cita se solicita un 30% de anticipo.</p>
       </div>
       <div class="process-item reveal">
         <span class="num">04</span>
-        <h4>Comenzamos tu proceso</h4>
+        <h3>Comenzamos tu proceso</h3>
         <p>Iniciamos el acompañamiento a tu ritmo, siempre en un espacio seguro.</p>
       </div>
     </div>
@@ -1010,39 +1012,39 @@
     </div>
 
     <div class="gallery-grid">
-      <div class="gallery-item reveal" data-full="fotos/galeria-1.jpg">
+      <div class="gallery-item reveal" tabindex="0" role="button" data-full="fotos/galeria-1.jpg">
         <div class="gallery-fallback"><i data-lucide="image"></i></div>
-        <img src="fotos/galeria-1.jpg" alt="Consultorio">
+        <img src="fotos/galeria-1.jpg" alt="Consultorio" loading="lazy" decoding="async">
         <span>Consultorio</span>
       </div>
-      <div class="gallery-item reveal" data-full="fotos/galeria-2.jpg">
+      <div class="gallery-item reveal" tabindex="0" role="button" data-full="fotos/galeria-2.jpg">
         <div class="gallery-fallback"><i data-lucide="image"></i></div>
-        <img src="fotos/galeria-2.jpg" alt="Detalle del espacio">
+        <img src="fotos/galeria-2.jpg" alt="Detalle del espacio" loading="lazy" decoding="async">
         <span>Detalle</span>
       </div>
-      <div class="gallery-item reveal" data-full="fotos/galeria-3.jpg">
+      <div class="gallery-item reveal" tabindex="0" role="button" data-full="fotos/galeria-3.jpg">
         <div class="gallery-fallback"><i data-lucide="image"></i></div>
-        <img src="fotos/galeria-3.jpg" alt="Sala de espera">
+        <img src="fotos/galeria-3.jpg" alt="Sala de espera" loading="lazy" decoding="async">
         <span>Sala de espera</span>
       </div>
-      <div class="gallery-item reveal" data-full="fotos/galeria-4.jpg">
+      <div class="gallery-item reveal" tabindex="0" role="button" data-full="fotos/galeria-4.jpg">
         <div class="gallery-fallback"><i data-lucide="image"></i></div>
-        <img src="fotos/galeria-4.jpg" alt="Fotografía profesional">
+        <img src="fotos/galeria-4.jpg" alt="Fotografía profesional" loading="lazy" decoding="async">
         <span>Retrato</span>
       </div>
-      <div class="gallery-item reveal" data-full="fotos/galeria-5.jpg">
+      <div class="gallery-item reveal" tabindex="0" role="button" data-full="fotos/galeria-5.jpg">
         <div class="gallery-fallback"><i data-lucide="image"></i></div>
-        <img src="fotos/galeria-5.jpg" alt="Detalle de marca">
+        <img src="fotos/galeria-5.jpg" alt="Detalle de marca" loading="lazy" decoding="async">
         <span>Marca</span>
       </div>
-      <div class="gallery-item reveal" data-full="fotos/galeria-6.jpg">
+      <div class="gallery-item reveal" tabindex="0" role="button" data-full="fotos/galeria-6.jpg">
         <div class="gallery-fallback"><i data-lucide="image"></i></div>
-        <img src="fotos/galeria-6.jpg" alt="Espacio de sesión">
+        <img src="fotos/galeria-6.jpg" alt="Espacio de sesión" loading="lazy" decoding="async">
         <span>Espacio de sesión</span>
       </div>
-      <div class="gallery-item reveal" data-full="fotos/galeria-7.jpg">
+      <div class="gallery-item reveal" tabindex="0" role="button" data-full="fotos/galeria-7.jpg">
         <div class="gallery-fallback"><i data-lucide="image"></i></div>
-        <img src="fotos/galeria-7.jpg" alt="Detalle del consultorio">
+        <img src="fotos/galeria-7.jpg" alt="Detalle del consultorio" loading="lazy" decoding="async">
         <span>Detalle</span>
       </div>
     </div>
@@ -1158,6 +1160,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ================= FOOTER ================= -->
 <footer id="contacto">
   <div class="wrap">
@@ -1209,12 +1213,13 @@
 </a>
 
 <!-- ================= LIGHTBOX ================= -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-close" id="lightboxClose"><i data-lucide="x"></i> Cerrar</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose"><i data-lucide="x"></i> Cerrar</button>
   <img src="" alt="" id="lightboxImg">
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
 
   /* ======= CONFIGURACIÓN RÁPIDA DE PLACEHOLDERS =======
@@ -1238,15 +1243,20 @@
   /* ======= mobile menu ======= */
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
+  function setMenuOpen(isOpen) {
+    hamburger.classList.toggle("open", isOpen);
+    mobileMenu.classList.toggle("open", isOpen);
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    hamburger.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+  }
   hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("open");
-    mobileMenu.classList.toggle("open");
+    setMenuOpen(!mobileMenu.classList.contains("open"));
   });
   document.querySelectorAll(".mobile-link").forEach(a => {
-    a.addEventListener("click", () => {
-      hamburger.classList.remove("open");
-      mobileMenu.classList.remove("open");
-    });
+    a.addEventListener("click", () => setMenuOpen(false));
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileMenu.classList.contains("open")) setMenuOpen(false);
   });
 
   /* ======= reveal on scroll ======= */
@@ -1314,24 +1324,46 @@
   /* ======= lightbox ======= */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxClose = document.getElementById("lightboxClose");
+  let lightboxTrigger = null;
+
+  function openLightbox(item) {
+    if (item.classList.contains("img-failed")) return;
+    const img = item.querySelector("img");
+    lightboxTrigger = item;
+    lightboxImg.setAttribute("src", img.getAttribute("src"));
+    lightboxImg.setAttribute("alt", img.getAttribute("alt"));
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    lightboxClose.focus();
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    if (lightboxTrigger) { lightboxTrigger.focus(); lightboxTrigger = null; }
+  }
+
   document.querySelectorAll(".gallery-item").forEach(item => {
-    item.addEventListener("click", () => {
-      if (item.classList.contains("img-failed")) return;
-      const img = item.querySelector("img");
-      lightboxImg.setAttribute("src", img.getAttribute("src"));
-      lightboxImg.setAttribute("alt", img.getAttribute("alt"));
-      lightbox.classList.add("open");
+    item.addEventListener("click", () => openLightbox(item));
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox(item);
+      }
     });
   });
-  document.getElementById("lightboxClose").addEventListener("click", () => {
-    lightbox.classList.remove("open");
-  });
+  lightboxClose.addEventListener("click", closeLightbox);
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) lightbox.classList.remove("open");
+    if (e.target === lightbox) closeLightbox();
+  });
+  lightbox.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { closeLightbox(); return; }
+    if (e.key === "Tab") { e.preventDefault(); lightboxClose.focus(); }
   });
 
   /* ======= year ======= */
   document.getElementById("year").textContent = new Date().getFullYear();
+});
 </script>
 
 </body>

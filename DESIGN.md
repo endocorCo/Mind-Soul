@@ -163,6 +163,7 @@ Flat by default. The system conveys hierarchy through hairline borders (Hairline
 - **Shape:** sharp corners, no radius, on every button in the system.
 - **Primary** (`button-primary`): solid Editorial Red background, white text, 1px red border, `13px 26px` padding. This is the booking/WhatsApp action everywhere it appears, on both light and dark backgrounds.
 - **Hover / Focus:** `filter: brightness(0.88)` plus `translateY(-2px)`. The color itself never changes hue on hover, only its luminance — a controlled variation of the same red.
+- **Keyboard focus:** every focusable element (not just buttons) gets a 2px Editorial Red `:focus-visible` outline, 3px offset. One rule, applies site-wide; never removed without a replacement.
 - **Ghost / Secondary** (`button-ghost`): transparent background, Reading Ink border and text on light surfaces (or white-on-30%-opacity border when placed on a dark hero). Hover fills solid Editorial Black with white text — a deliberate step up in contrast rather than a tint.
 
 ### Cards
@@ -195,6 +196,16 @@ Restrained, "subtle sophistication" register only, matching a calm and unhurried
 - **WhatsApp button breathes:** the fixed floating action button's shadow pulses on a slow 3.4s cycle, quiet enough to read as "alive" rather than "flashing." Pauses on hover so it doesn't fight the hover-lift.
 - **Graceful photo placeholders:** any gallery `<img>` that fails to load (no photo uploaded yet) hides itself and reveals a centered, on-brand image icon instead of the browser's default broken-image glyph. Clicking a placeholder slot does not open an empty lightbox.
 
+### Gallery & Lightbox (keyboard + screen reader parity)
+- Every `.gallery-item` is a real keyboard target: `tabindex="0" role="button"`, opens on Enter/Space exactly like a click.
+- The lightbox is a proper dialog: `role="dialog" aria-modal="true" aria-hidden` toggled on open/close, not just a CSS visibility class.
+- Focus moves to the close button the instant the lightbox opens, and back to the exact photo that triggered it the instant it closes. Escape closes it from anywhere inside. Tab is trapped to the single close button since there's only one focusable element inside.
+- A gallery slot that failed to load its photo (`.img-failed`) is inert: it never opens an empty lightbox.
+
+### Semantic structure
+- One `<main>` landmark wraps everything between the header and footer. Screen reader and browser "skip to content" tooling depends on this existing exactly once per page.
+- Heading levels never skip: page `h1` (hero) → section `h2`s → card/item titles `h3`. Card titles (value props, service cards, process steps) are `h3`, not `h4`, because they nest directly under an `h2` section heading with nothing between.
+
 ## 6. Do's and Don'ts
 
 ### Do:
@@ -204,6 +215,8 @@ Restrained, "subtle sophistication" register only, matching a calm and unhurried
 - **Do** convert long, repetitive mobile stacks (3+ similar cards/photos) into the horizontal scroll-snap carousel pattern rather than letting them stack vertically for multiple screens of scroll.
 - **Do** treat mobile as the primary surface: verify nothing overlaps the fixed header, and that floating/absolute-positioned elements (the hero logo, the About photo's badges) get an explicit static-flow fallback below ~999px.
 - **Do** give a new grid's children a staggered `.reveal` entrance (opacity + transform, ~0.05-0.08s apart) instead of letting the whole grid pop in as one block; if the element already animates `transform` on hover, drop the reveal to opacity-only rather than fighting the hover transition for the same property.
+- **Do** make any new click-to-open element (photo, card, custom control) keyboard-operable with matching `tabindex`/`role` and Enter/Space handling, not just a `click` listener. A mouse-only interaction is an incomplete one.
+- **Do** remember `defer` only affects an external `<script src="...">`. An inline `<script>` that depends on a deferred external script must be wrapped in a `DOMContentLoaded` listener instead, or it will run before the dependency loads.
 
 ### Don't:
 - **Don't** use the generic "therapist template" look: leaf/hand icons, pastel gradient washes, stock-photo-warm color grading.

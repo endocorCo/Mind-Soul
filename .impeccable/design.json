@@ -187,7 +187,7 @@
       "kind": "card",
       "refersTo": "card",
       "description": "Flat white card with a leading icon, title, description and price. Lifts on hover, no shadow at rest.",
-      "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21v-1a8 8 0 0 1 16 0v1\"/></svg></div><h4 class=\"ds-card-title\">Terapia individual</h4><p class=\"ds-card-body\">Un espacio personal para explorar, comprender y trabajar en tu bienestar emocional, a tu ritmo.</p><p class=\"ds-card-price\">$500 MXN</p></div>",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21v-1a8 8 0 0 1 16 0v1\"/></svg></div><h3 class=\"ds-card-title\">Terapia individual</h3><p class=\"ds-card-body\">Un espacio personal para explorar, comprender y trabajar en tu bienestar emocional, a tu ritmo.</p><p class=\"ds-card-price\">$500 MXN</p></div>",
       "css": ".ds-card { background: #fff; padding: 38px 32px; font-family: 'Manrope', sans-serif; transition: transform 0.35s ease, box-shadow 0.35s ease; } .ds-card:hover { transform: translateY(-6px); box-shadow: 0 22px 40px -20px rgba(0,0,0,0.16); } .ds-card-icon { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border: 1px solid #E5E5E5; color: #9E9E9E; margin-bottom: 22px; } .ds-card-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.25rem; margin: 0 0 10px; color: #000; } .ds-card-body { font-size: 1rem; color: #333333; margin: 0 0 14px; line-height: 1.6; } .ds-card-price { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.25rem; color: #000; margin: 0; }"
     },
     {
@@ -243,7 +243,8 @@
       "Do put anything meant to be read in Reading Ink (#333333) or Editorial Black, never in Quiet Gray (#9E9E9E).",
       "Do use the shared-hairline-grid construction for new card rows instead of giving every card its own border and shadow.",
       "Do convert long, repetitive mobile stacks into the horizontal scroll-snap carousel pattern rather than letting them stack vertically for multiple screens of scroll.",
-      "Do treat mobile as the primary surface and verify nothing overlaps the fixed header."
+      "Do treat mobile as the primary surface and verify nothing overlaps the fixed header.",
+      "Do make any click-to-open element keyboard-operable (tabindex, role, Enter/Space) with real focus management, not just a click listener — the gallery lightbox is the reference implementation."
     ],
     "donts": [
       "Don't use the generic \"therapist template\" look: leaf/hand icons, pastel gradient washes, stock-photo-warm color grading.",

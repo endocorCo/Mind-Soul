@@ -211,6 +211,6 @@ Restrained, "subtle sophistication" register only, matching a calm and unhurried
 - **Don't** add drop shadows to a card or button at rest. Shadows only appear on hover or on the two designated "physical object" badges.
 - **Don't** round corners. The system is sharp-edged everywhere except the circular floating WhatsApp button and the circular practice logo mark.
 - **Don't** let red cover a background, a section, or more than a button/badge-sized area.
-- **Don't** animate layout properties (`max-height`, `width`, `top`) for show/hide state; the FAQ accordion uses `grid-template-rows: 0fr → 1fr` for exactly this reason.
+- **Do** prefer `transform`/`opacity` for show/hide state, but the FAQ accordion is a deliberate, verified exception: it animates `max-height` with the exact pixel height read from `scrollHeight` in JS. A `grid-template-rows: 0fr → 1fr` version was tried first but never fully collapsed to 0 (the answer's own `padding-bottom` kept a residual gap visible even when closed, confirmed on real devices) and it was replaced for reliability. Don't reintroduce the grid-rows version without solving that padding problem first.
 - **Don't** ship a new transition or animation without a `prefers-reduced-motion` fallback; every existing motion in the system collapses cleanly under it.
 - **Don't** fabricate content to fill a section (credentials, testimonials, phone numbers, social handles) — every fact on this page must come from the practitioner directly.

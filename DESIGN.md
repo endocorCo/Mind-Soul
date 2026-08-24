@@ -135,10 +135,10 @@ A seven-step scale, `--text-*` custom properties, ratio ≥1.25 at every step th
 - **Heading** (500, `clamp(1.6rem, 3vw, 2rem)`, line-height 1.15-1.2): third-level titles (the practitioner's name, "Consultorio").
 - **Title / Subheading** (500, 1.25rem): card and item titles (service names, value-prop and process-step titles, FAQ questions). One size for every mid-level title on the page, no exceptions.
 - **Body** (400, 1rem, line-height 1.6): every real paragraph, no exceptions, in Reading Ink. Previously several description paragraphs sat at 14-15px; all body copy is now 16px minimum. Capped near 38-65ch per container so no paragraph runs wider than a comfortable reading measure.
-- **Secondary** (400, 0.875rem): nav links, button labels, footer links and blurb, testimonial attribution — supporting UI text that is deliberately quieter than body copy, never used for sentences meant to be read closely.
+- **Secondary** (400, 0.875rem): nav links, button labels, footer links and blurb — supporting UI text that is deliberately quieter than body copy, never used for sentences meant to be read closely.
 - **Label** (600, 0.75rem, letter-spacing 0.18em, uppercase): eyebrow kickers, micro-labels (about-tags, field labels, footer copyright), in Reading Ink.
 
-Decorative display numerals (the 01-04 markers, the testimonial quote mark, the years-of-experience badge) sit outside this scale on purpose. They are singular accents, not part of the reading hierarchy, so they don't need to fit the ratio.
+Decorative display numerals (the 01-04 markers, the years-of-experience badge) sit outside this scale on purpose. They are singular accents, not part of the reading hierarchy, so they don't need to fit the ratio.
 
 ### Named Rules
 **The Serif-Says-It-Matters Rule.** If a piece of text is switched into Fraunces italic (the hero's emphasis word, pull quotes, numerals), it is because that specific phrase or figure is the emotional or informational point of its section. Italic serif is never used decoratively.
@@ -170,13 +170,13 @@ Flat by default. The system conveys hierarchy through hairline borders (Hairline
 - **Background:** Paper White.
 - **Border:** cards inside a grid (services, value props) share a single Hairline Gray background behind a 1px gap, so the grid itself produces the dividing hairlines rather than each card owning its own border — an intentional "shared hairline" construction, not individually boxed cards.
 - **Shadow strategy:** flat at rest; see Elevation.
-- **Internal padding:** `38px 32px` for service cards; smaller (`22–30px`) for denser cards (value props, testimonials).
+- **Internal padding:** `38px 32px` for service cards; smaller (`22–30px`) for denser cards (value props).
 
 ### Navigation
 - Fixed header, fully transparent over the hero with white wordmark and nav text; crossfades to a translucent white, blurred bar with Editorial Black text once the page scrolls past 40px.
 - The nav wordmark pairs upright Fraunces ("Mind & Soul") with an italic Editorial Red flourish word — the one place the accent color appears in permanent UI chrome, not just a CTA.
 - Active/hover state on nav links is a thin red underline that grows from 0 to full width; no background pill, no color-fill hover.
-- Mobile collapses to a single hamburger; the mobile menu is a full-screen white overlay with large serif links.
+- Mobile collapses to a single hamburger; the mobile menu is a full-screen white overlay with serif links (1.4rem, restrained rather than oversized).
 
 ### Horizontal Carousel (signature mobile pattern)
 - Used for both the services grid and the photo gallery on screens ≤999px, replacing what would otherwise be a tall vertical stack.
@@ -184,7 +184,7 @@ Flat by default. The system conveys hierarchy through hairline borders (Hairline
 - No visible scrollbar; the peeked next-item is the only affordance that more content follows.
 
 ### Scroll Reveal
-- Every card-shaped grid (value props, services, process steps, gallery, testimonials) reveals its children individually, not as one flat block: fade + rise (`opacity` and `transform`, never layout properties), staggered ~0.05-0.08s per item, capped so a 7-item grid still finishes inside ~0.4s.
+- Every card-shaped grid (value props, services, process steps, gallery) reveals its children individually, not as one flat block: fade + rise (`opacity` and `transform`, never layout properties), staggered ~0.05-0.08s per item, capped so a 7-item grid still finishes inside ~0.4s.
 - Elements whose hover state already animates `transform` (service cards lift on hover) reveal on `opacity` alone, so the entrance and the hover never fight over the same property.
 - `@media (prefers-reduced-motion: reduce)` forces every `.reveal` element to its final, fully-visible state and collapses all transition/animation durations to near-zero. Nothing on the page depends on motion to become visible or usable.
 

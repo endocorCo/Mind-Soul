@@ -596,31 +596,6 @@
     display:flex; align-items:center; gap:8px;
   }
 
-  /* ---------- testimonials ---------- */
-  .testimonial-grid{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-  }
-  .testimonial-grid .testimonial-card:nth-child(1){ transition-delay: 0s; }
-  .testimonial-grid .testimonial-card:nth-child(2){ transition-delay: .08s; }
-  .testimonial-grid .testimonial-card:nth-child(3){ transition-delay: .16s; }
-  .testimonial-card{
-    background: var(--card);
-    border: 1px dashed var(--line);
-    padding: 36px 30px;
-  }
-  .testimonial-card .quote-mark{
-    font-family:'Fraunces', serif;
-    font-style: italic;
-    font-size: 2.6rem;
-    color: var(--accent);
-    line-height: 1;
-    display:block;
-    margin-bottom: 16px;
-  }
-  .testimonial-card p{ font-size: var(--text-body); color: var(--ink-soft); margin-bottom: 20px; font-style: italic; }
-  .testimonial-card .name{ font-size: var(--text-secondary); font-weight: 700; color: var(--ink); font-style: normal; }
 
   /* ---------- FAQ ---------- */
   .faq-item{
@@ -776,7 +751,6 @@
     .gallery-grid::-webkit-scrollbar{ display:none; }
     .gallery-item{ flex:0 0 68%; aspect-ratio:1/1; scroll-snap-align:start; }
     .gallery-item span{ display:none; }
-    .testimonial-grid{ grid-template-columns: 1fr; }
     .location-grid{ grid-template-columns: 1fr; }
     .footer-grid{ grid-template-columns: 1fr 1fr; gap: 40px; }
   }
@@ -1075,33 +1049,6 @@
   </div>
 </section>
 
-<!-- ================= TESTIMONIALS ================= -->
-<section id="testimonios">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Testimonios</span>
-      <h2>Lo que comparten quienes han iniciado su proceso</h2>
-    </div>
-
-    <div class="testimonial-grid">
-      <div class="testimonial-card reveal">
-        <span class="quote-mark">"</span>
-        <p>[Testimonio real del paciente. Reemplazar antes de publicar.]</p>
-        <span class="name">[Nombre o iniciales, con autorización]</span>
-      </div>
-      <div class="testimonial-card reveal">
-        <span class="quote-mark">"</span>
-        <p>[Testimonio real del paciente. Reemplazar antes de publicar.]</p>
-        <span class="name">[Nombre o iniciales, con autorización]</span>
-      </div>
-      <div class="testimonial-card reveal">
-        <span class="quote-mark">"</span>
-        <p>[Testimonio real del paciente. Reemplazar antes de publicar.]</p>
-        <span class="name">[Nombre o iniciales, con autorización]</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ================= FAQ ================= -->
 <section id="faq">
